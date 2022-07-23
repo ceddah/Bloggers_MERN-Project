@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCurrentUser } from "./store/actions/authActions";
 import { useDispatch } from "react-redux";
+import { useDarkModeContext } from "./context/darkModeContext";
 
 //Pages
 const Home = lazy(() => import("./pages/Home"));
@@ -17,6 +18,8 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => {
   const dispatch = useDispatch();
+  const { isDarkMode } = useDarkModeContext();
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
@@ -25,19 +28,21 @@ const App = () => {
   }, [dispatch]);
   return (
     <Suspense fallback={<p>LOADING...</p>}>
-      <div>
-        <Router>
-          <ToastContainer />
-          <Routes>
-            <Route path={ROUTES.HOME} element={<Home />} />
-            <Route path={ROUTES.BROWSE} element={<Browse />} />
-            <Route path={ROUTES.FEED} element={<Feed />} />
-            <Route path={ROUTES.AUTH} element={<Auth />} />
-            <Route path={ROUTES.PROFILE} element={<Profile />} />
-            <Route path={ROUTES.DETAIL} element={<Detail />} />
-            <Route element={<NotFound />} />
-          </Routes>
-        </Router>
+      <div className={isDarkMode ? "dark" : ""}>
+        <div className="dark:bg-[#20232A] h-[100vh]">
+          <Router>
+            <ToastContainer />
+            <Routes>
+              <Route path={ROUTES.HOME} element={<Home />} />
+              <Route path={ROUTES.BROWSE} element={<Browse />} />
+              <Route path={ROUTES.BOOKMARKS} element={<Feed />} />
+              <Route path={ROUTES.AUTH} element={<Auth />} />
+              <Route path={ROUTES.PROFILE} element={<Profile />} />
+              <Route path={ROUTES.DETAIL} element={<Detail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Router>
+        </div>
       </div>
     </Suspense>
   );

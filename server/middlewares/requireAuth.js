@@ -11,5 +11,9 @@ module.exports = requireAuth = async (req, res, next) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
   req.user = await User.findById(decoded.id);
+
+  if (!req.user) {
+    return next(new ErrorHandler("Login first to access this resource.", 401));
+  }
   next();
 };

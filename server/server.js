@@ -3,6 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database");
 const authRoutes = require("./routes/auth");
+const postRoutes = require("./routes/post");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 require("dotenv").config({ path: "server/config/config.env" });
 
@@ -17,15 +18,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use("/test", (req, res, next) => {
-  return res.status(200).send("Success!");
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {

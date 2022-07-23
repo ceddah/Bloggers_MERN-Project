@@ -1,8 +1,14 @@
 import React from "react";
-import Layout from "../wrap/Layout";
+import Layout from "../util/Layout";
+import MetaData from "../components/MetaData";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <MetaData title="Home" />
+      <div>Home</div>
+    </>
+  );
 };
 
 export default Layout(Home);
