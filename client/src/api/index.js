@@ -38,3 +38,10 @@ export const signOut = async () => {
     credentials: "include",
   });
 };
+
+export const getLatestPosts = async () => {
+  return await fetch(`${SERVER_URL}/api/posts/latest-posts`, {
+    method: "GET",
+    credentials: "include",
+  });
+};

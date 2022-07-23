@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/Logo.png";
+import MobileNavbar from "./MobileNavbar";
 import { TbBulb } from "react-icons/tb";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +8,10 @@ import { signOutAction } from "../store/actions/authActions";
 import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
 import { useDarkModeContext } from "../context/darkModeContext";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
+  const [toggleMobileNav, setToggleMobileNav] = useState(false);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { toggleDarkMode } = useDarkModeContext();
   const dispatch = useDispatch();
@@ -37,11 +40,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="w-[85%] mx-auto py-10 dark:bg-[#33373E] px-5 dark:text-[#F7F7F7] flex justify-between align-center">
+    <div className="w-full px-[7%] mx-auto py-10 dark:bg-[#33373E] px-5 dark:text-[#F7F7F7] relative flex justify-between align-center">
       <Link to={ROUTES.HOME}>
-        <img src={Logo} alt="logo" style={{ height: "49px" }} />
+        <img src={Logo} alt="logo" className="md:h-[49px] h-[35px]" />
       </Link>
-      <div className="flex align-center">
+      <div className="md:flex hidden align-center">
         <div className="mr-10 flex align-center">
           <button
             type="button"
@@ -72,6 +75,10 @@ const Navbar = () => {
         </ul>
         {renderActionButton()}
       </div>
+      <button onClick={() => setToggleMobileNav(true)} className="md:hidden block text-2xl">
+        <AiOutlineMenu />
+      </button>
+      {toggleMobileNav && <MobileNavbar setToggleMobileNav={setToggleMobileNav} />}
     </div>
   );
 };

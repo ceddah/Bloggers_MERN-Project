@@ -29,7 +29,7 @@ const App = () => {
   return (
     <Suspense fallback={<p>LOADING...</p>}>
       <div className={isDarkMode ? "dark" : ""}>
-        <div className="dark:bg-[#20232A] h-[100vh]">
+        <div className="dark:bg-[#20232A] min-h-screen">
           <Router>
             <ToastContainer />
             <Routes>
