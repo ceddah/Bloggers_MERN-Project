@@ -23,7 +23,8 @@ const Home = () => {
   return (
     <>
       <MetaData title="Home" />
-      <div className="md:w-3/4 w-[90%] mx-auto flex flex-col items-center mt-10 pb-10">
+      <div className="md:w-3/4 w-[90%] mx-auto flex flex-col items-center mt-10 pb-10 relative">
+        <div className="decor-bg hidden md:block"></div>
         <h1 className="text-3xl font-semibold mb-8 text-center dark:text-[#F7F7F7]">
           Explore trending blogs of all categories
         </h1>

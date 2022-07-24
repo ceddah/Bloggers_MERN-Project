@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Logo from "../assets/Logo.png";
 import MobileNavbar from "./MobileNavbar";
+import NavItems from "./NavItems";
+import AuthButton from "./AuthButton";
 import { TbBulb } from "react-icons/tb";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,25 +21,15 @@ const Navbar = () => {
 
   const handleAuth = (action) => {
     if (action === "Sign Up") {
-      navigate(ROUTES.AUTH, { replace: true });
+      navigate(ROUTES.AUTH);
     } else {
       dispatch(
         signOutAction(() => {
-          navigate(ROUTES.HOME, { replace: true });
+          navigate(ROUTES.HOME);
         })
       );
     }
   };
-
-  const renderActionButton = () => (
-    <button
-      type="button"
-      className="ml-10 border-2 bg-white dark:text-[#20232A] border-blue-700 transition-all cursor-pointer rounded-lg px-5 dark:hover:bg-[#ebebed] hover:bg-[#2D5CD0] font-medium hover:text-white"
-      onClick={() => handleAuth(isAuthenticated ? "Sign Out" : "Sign Up")}
-    >
-      {isAuthenticated ? "Sign Out" : "Sign Up"}
-    </button>
-  );
 
   return (
     <div className="w-full px-[7%] mx-auto py-10 dark:bg-[#33373E] px-5 dark:text-[#F7F7F7] relative flex justify-between align-center">
@@ -56,29 +48,21 @@ const Navbar = () => {
         </div>
 
         <ul className="flex items-center">
-          {[
-            { name: "Browse", path: ROUTES.BROWSE },
-            { name: "Bookmarks", path: ROUTES.BOOKMARKS },
-            { name: "Profile", path: `/profile/${user?._id}` },
-          ].map((item, idx) => {
-            if (!isAuthenticated && (item.name === "Profile" || item.name === "Bookmarks"))
-              return null;
-            return (
-              <li
-                className="mx-5 font-bold cursor-pointer dark:hover:text-[#ebebed] hover:text-[#2D5CD0]"
-                key={idx}
-              >
-                {item.name}
-              </li>
-            );
-          })}
+          <NavItems userId={user?._id} isAuthenticated={isAuthenticated} />
         </ul>
-        {renderActionButton()}
+        <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />
       </div>
       <button onClick={() => setToggleMobileNav(true)} className="md:hidden block text-2xl">
         <AiOutlineMenu />
       </button>
-      {toggleMobileNav && <MobileNavbar setToggleMobileNav={setToggleMobileNav} />}
+      {toggleMobileNav && (
+        <MobileNavbar
+          setToggleMobileNav={setToggleMobileNav}
+          userId={user?._id}
+          isAuthenticated={isAuthenticated}
+          handleAuth={handleAuth}
+        />
+      )}
     </div>
   );
 };

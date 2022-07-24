@@ -88,16 +88,14 @@ const Auth = () => {
   return (
     <>
       <MetaData title={isSignUp ? "Sign Up" : "Sign In"} />
-      <div className="w-full h-[100vh] flex justify-center items-center bg-[#F4F9FF] dark:bg-[#20232A]">
-        <div className="border-[15px] px-16 py-3 border-[#E5EDFA] rounded-xl bg-white w-2/4 text-center">
+      <div className="w-full md:h-[100vh] min-h-screen flex justify-center items-center bg-[#F4F9FF] dark:bg-[#20232A]">
+        <div className="border-[15px] md:px-16 px-3 py-3 border-[#E5EDFA] rounded-xl bg-white w-[95%] md:w-2/4 text-center">
           <h1 className="font-semibold text-xl">
             {isSignUp ? "Join the community" : "Sign in to your account"}
           </h1>
           <p className="text-gray-400 mt-3 mb-5">
             Take your art to the next level. Get it seen by millions of people.
           </p>
-          <button>Sign In With Google</button>
-          <p className="mt-5">Or</p>
           <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
             {isSignUp && (
               <div className="flex gap-3 w-full justify-center">

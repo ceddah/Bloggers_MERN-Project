@@ -9,3 +9,13 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.decor-bg {
+  background-image: url("./assets//bg-decor.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
