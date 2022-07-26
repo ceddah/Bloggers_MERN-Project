@@ -1,7 +1,15 @@
-import { POSTS_ERROR, LATEST_POSTS_DATA, CLEAR_POST_ERROR } from "../../constants/postsConstants";
+import {
+  POSTS_ERROR,
+  LATEST_POSTS_DATA,
+  CLEAR_POST_ERROR,
+  ALL_POSTS_DATA,
+} from "../../constants/postsConstants";
 
 const initialState = {
-  allPosts: [],
+  allPosts: {
+    posts: [],
+    totalItems: 0,
+  },
   latestPosts: [],
   postDetail: null,
   error: null,
@@ -18,6 +26,14 @@ export const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    case ALL_POSTS_DATA:
+      return {
+        ...state,
+        allPosts: {
+          posts: action.payload.posts,
+          totalItems: action.payload.totalItems,
+        },
       };
     case CLEAR_POST_ERROR:
       return {

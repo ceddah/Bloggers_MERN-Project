@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CategoryTag from "./CategoryTag";
 import { categoryColors } from "../constants/categoryColors";
 
 const BlogCard = ({ post }) => {
@@ -7,19 +8,14 @@ const BlogCard = ({ post }) => {
   const color = categoryColors.find((color) => color.name === category).color;
 
   return (
-    <div className="w-full h-full bg-white ">
+    <div className="w-full h-full pb-5 bg-white border-2 border-gray-200 shadow-lg">
       <img
         className="w-full md:h-2/4 h-1/4 object-cover bg-center bg-cover"
         src={thumbnail}
         alt="thumbnail"
       />
       <div className="flex flex-col items-start px-10 pt-3">
-        <p
-          className="text-white rounded-xl px-5 py-0.5 my-2 font-semibold"
-          style={{ backgroundColor: color }}
-        >
-          {category}
-        </p>
+        <CategoryTag color={color} category={category} />
         <h1 className="font-bold text-xl text-left mt-2 whitespace-pre-line">{title}</h1>
         <p className="text-left mt-5">
           {content.substring(0, 60) + "... "}

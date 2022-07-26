@@ -22,7 +22,7 @@ const posts = [
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Travel",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca85"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9f8"),
   },
   {
     title: "The likable brand (or person)",
@@ -36,7 +36,7 @@ const posts = [
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
     ],
     category: "Business",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca86"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9f9"),
   },
   {
     title: "How to Find a Good Personal Trainer or Coach: 5 Mistakes to Avoid!",
@@ -50,7 +50,7 @@ const posts = [
       "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Health and fitness",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca84"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9fa"),
   },
   {
     title: "Detachment and commitment",
@@ -63,7 +63,7 @@ const posts = [
       "https://images.unsplash.com/photo-1510932742089-bef92acabb5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Other",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca87"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9fb"),
   },
   {
     title: "How to Fix the 413 Request Entity Too Large Error",
@@ -77,7 +77,7 @@ const posts = [
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Technology",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca88"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9fc"),
   },
   {
     title: "Tiktok Cinnamon Rolls",
@@ -91,7 +91,7 @@ const posts = [
       "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1153&q=80",
     ],
     category: "Food",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca89"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9fd"),
   },
   {
     title: "Reject the tyranny of being picked: pick yourself",
@@ -104,7 +104,7 @@ const posts = [
       "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Other",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca8a"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9f9"),
   },
   {
     title: "Life in Motion: A Guide to Animating Mobile Data Visualizations",
@@ -118,7 +118,7 @@ const posts = [
       "https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Art and Design",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca83"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9f8"),
   },
   {
     title: "Day 9: Loen Skylift and Mt Hoven",
@@ -132,7 +132,7 @@ const posts = [
       "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     ],
     category: "Travel",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca84"),
+    author: mongoose.Types.ObjectId("62dbf6188cb54821eed80f90"),
   },
   {
     title: "Birria Tacos Recipe",
@@ -146,7 +146,7 @@ const posts = [
       "https://images.unsplash.com/photo-1566740932818-cacfb780ae18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Food",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca85"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ffa00"),
   },
   {
     title: "Deepfakes are taking over TikTok — here’s how you can spot them",
@@ -160,7 +160,7 @@ const posts = [
       "https://images.unsplash.com/photo-1564475470622-91237acb86be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1111&q=80",
     ],
     category: "Technology",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca86"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9ff"),
   },
   {
     title: "Brooklyn Home Evolved",
@@ -176,7 +176,7 @@ const posts = [
       "https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Fashion",
-    author: mongoose.Types.ObjectId("62dbd6f3fa9b70b07cecca82"),
+    author: mongoose.Types.ObjectId("62dbf43c9da242d2a73ff9fd"),
   },
 ];
 

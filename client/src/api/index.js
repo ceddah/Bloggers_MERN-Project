@@ -45,3 +45,13 @@ export const getLatestPosts = async () => {
     credentials: "include",
   });
 };
+
+export const getAllPosts = async (search, category, page) => {
+  return await fetch(
+    `${SERVER_URL}/api/posts/browse-posts?page=${page}&category=${category}&search=${search}`,
+    {
+      method: "GET",
+      credentials: "include",
+    }
+  );
+};

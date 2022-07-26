@@ -1,3 +1,4 @@
 export const POSTS_ERROR = "POSTS_ERROR";
 export const CLEAR_POST_ERROR = "CLEAR_POST_ERROR";
 export const LATEST_POSTS_DATA = "LATEST_POSTS_DATA";
+export const ALL_POSTS_DATA = "ALL_POSTS_DATA";

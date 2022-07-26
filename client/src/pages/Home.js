@@ -45,7 +45,7 @@ const Home = () => {
         </div>
         <div className="md:w-2/4 md:h-[620px] h-full w-full dark:border-none border-2 border-[#9B9B9B] rounded mt-10">
           {latestPosts.length && (
-            <Carousel className="h-full">
+            <Carousel className="h-full border-none">
               {latestPosts.map((post) => (
                 <BlogCard key={post._id} post={post} />
               ))}

@@ -45,8 +45,13 @@ exports.postDetails = async (req, res, next) => {
         populate: {
           path: "author",
           model: "User",
-          select: "_id username image",
+          select: "_id username fullName image",
         },
+      },
+      {
+        path: "author",
+        model: "User",
+        select: "_id username fullName image",
       },
     ]);
 
@@ -110,17 +115,33 @@ exports.editComment = async (req, res, next) => {
 };
 
 exports.browsePosts = async (req, res, next) => {
-  const { search, category } = req.query;
+  const { search, category, page } = req.query;
+  let currentPage = page || 1;
+  const perPage = 3;
+
   const options = {
     ...(search && { title: { $regex: search, $options: "i" } }),
     ...(category && { category }),
   };
 
   try {
-    const posts = await Post.find(options).sort({ createdAt: -1 });
+    const totalItems = await Post.find(options).countDocuments();
+    const lastPage = Math.ceil(totalItems / perPage);
+    if (currentPage > lastPage) {
+      currentPage = lastPage;
+    }
+    if (currentPage <= 0) {
+      currentPage = 1;
+    }
+    const posts = await Post.find(options)
+      .populate("author")
+      .sort({ createdAt: -1 })
+      .skip((currentPage - 1) * perPage)
+      .limit(perPage);
     return res.status(200).json({
       success: true,
       posts,
+      totalItems,
     });
   } catch (error) {
     next(error);
@@ -144,7 +165,10 @@ exports.bookmarkPost = async (req, res, next) => {
 
 exports.latestPosts = async (req, res, next) => {
   try {
-    const latest = await Post.find().sort({ createdAt: -1 }).limit(3);
+    const latest = await Post.find()
+      .populate("author", "fullName image")
+      .sort({ createdAt: -1 })
+      .limit(3);
 
     return res.status(200).json({
       success: true,

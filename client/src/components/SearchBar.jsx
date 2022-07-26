@@ -1,11 +1,12 @@
 import React from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
 
 const SearchBar = ({
   value,
   handleChange,
   placeholder,
   btnText,
+  isSearching,
   handleSubmit = (e) => {
     e.preventDefault();
   },
@@ -24,7 +25,7 @@ const SearchBar = ({
       >
         <span className="md:block hidden">{btnText}</span>
         <span className="md:hidden block">
-          <AiOutlinePlus />
+          {!isSearching ? <AiOutlinePlus /> : <AiOutlineSearch />}
         </span>
       </button>
     </form>

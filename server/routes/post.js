@@ -17,9 +17,9 @@ const router = express.Router();
 router.route("/create-new").post(requireAuth, createNewPost);
 router.route("/remove-post/:postId").delete(requireAuth, removePost);
 router.route("/detail/:postId").get(requireAuth, postDetails);
-router.route("/browse-posts").get(requireAuth, browsePosts);
+router.route("/browse-posts").get(browsePosts);
 router.route("/bookmark/:postId").get(requireAuth, bookmarkPost);
-router.route("/latest-posts").get(requireAuth, latestPosts);
+router.route("/latest-posts").get(latestPosts);
 
 // Comments
 router.route("/detail/:postId/new-comment").post(requireAuth, postComment);
