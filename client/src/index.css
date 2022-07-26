@@ -54,3 +54,11 @@ body {
 .active {
   background-color: #b8bbc5;
 }
+
+.carousel-root,
+.carousel,
+.slider-wrapper,
+.slider,
+.slide {
+  height: 100%;
+}

@@ -9,13 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { signOutAction } from "../store/actions/authActions";
 import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
-import { useDarkModeContext } from "../context/darkModeContext";
-import { AiOutlineMenu } from "react-icons/ai";
+import { useDarkModeContext, useModalContext } from "../context";
+import { AiOutlineMenu, AiOutlinePlus } from "react-icons/ai";
 
 const Navbar = () => {
   const [toggleMobileNav, setToggleMobileNav] = useState(false);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { toggleDarkMode } = useDarkModeContext();
+  const { setIsModalOpen } = useModalContext();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -50,6 +51,15 @@ const Navbar = () => {
         <ul className="flex items-center">
           <NavItems userId={user?._id} isAuthenticated={isAuthenticated} />
         </ul>
+        {isAuthenticated && (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="md:ml-10 border-2 bg-white dark:text-[#20232A] flex items-center border-blue-700 transition-all md:text-sm text-xl cursor-pointer rounded-lg px-10 md:px-5 py-3 md:py-0 dark:hover:bg-[#ebebed] hover:bg-[#2D5CD0] font-medium hover:text-white"
+          >
+            <AiOutlinePlus className="text-lg" />
+            <span className="xl:block hidden ml-1">Write a Blog</span>
+          </button>
+        )}
         <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />
       </div>
       <button onClick={() => setToggleMobileNav(true)} className="md:hidden block text-2xl">

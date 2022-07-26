@@ -8,17 +8,8 @@ import BlogCard from "../components/BlogCard";
 import CategoryTag from "../components/CategoryTag";
 import Pagination from "../components/Pagination";
 import { categoryColors } from "../constants/categoryColors";
-// use debounce for search
-// when fetching by search or category set currentPage to 0
-// show active link style on navbar
-// maybe use skeleton while loading posts
-// darkmode D:
-// falback for no results found if totalItems = 0
 
-// Active class for categories and also when clicking twice on the same category, set it back to empty
-//or [{ name: "All", color: "test"}, ...categoryColors].map() => and if category === all setCategory("")
-// add "Home" to mobile nav or add it in normal nav too.
-// protected routes
+// maybe use skeleton while loading posts -- add ALL_POSTS_LOADING action which will change loading variable in store
 
 const Browse = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,8 +21,19 @@ const Browse = () => {
     allPosts: { posts, totalItems },
   } = useSelector((state) => state.posts);
 
-  const handleCategoryChange = (category) => {};
-
+  const handleCategoryChange = (pressedCategory) => {
+    setCurrentPage(1);
+    if (pressedCategory === "All") {
+      setCategory("");
+    } else {
+      if (pressedCategory === category) {
+        setCategory("");
+      } else {
+        setCategory(pressedCategory);
+      }
+    }
+  };
+  console.log(totalItems);
   useEffect(() => {
     if (search || category) {
       setCurrentPage(0);
@@ -44,11 +46,13 @@ const Browse = () => {
         Browse All Blogs
       </h1>
       <div className="flex gap-2 flex-wrap">
-        {categoryColors.map(({ name, color }) => (
+        {[{ name: "All", color: "black" }, ...categoryColors].map(({ name, color }) => (
           <CategoryTag
             key={name}
             category={name}
             color={color}
+            isOnBrowsePage
+            selectedCategory={category}
             handleCategoryChange={handleCategoryChange}
           />
         ))}
@@ -63,9 +67,13 @@ const Browse = () => {
         />
       </div>
       <div className="flex flex-col xl:flex-row xl:h-[700px] h-full mb-10 gap-5">
-        {posts.map((post) => (
-          <BlogCard key={post?._id} post={post} />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post) => <BlogCard key={post?._id} post={post} />)
+        ) : (
+          <h1 className="w-full md:mt-10 font-semibold text-center text-2xl">
+            No results found matching your criteria.
+          </h1>
+        )}
       </div>
       {Math.ceil(totalItems / 3) > 1 && (
         <Pagination

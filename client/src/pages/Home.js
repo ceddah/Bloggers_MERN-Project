@@ -10,13 +10,11 @@ import { fetchLatestPosts } from "../store/actions/postsActions";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-// Shorthen some category names
-
 const Home = () => {
   const [newsletter, setNewsletter] = useState("");
   const { latestPosts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  console.log(latestPosts);
+
   useEffect(() => {
     dispatch(fetchLatestPosts());
   }, [dispatch]);
@@ -43,9 +41,9 @@ const Home = () => {
             btnText="Subscribe"
           />
         </div>
-        <div className="md:w-2/4 md:h-[620px] h-full w-full dark:border-none border-2 border-[#9B9B9B] rounded mt-10">
+        <div className="md:w-2/4 md:h-[620px] h-full w-full rounded mt-10">
           {latestPosts.length && (
-            <Carousel className="h-full border-none">
+            <Carousel className="h-full">
               {latestPosts.map((post) => (
                 <BlogCard key={post._id} post={post} />
               ))}

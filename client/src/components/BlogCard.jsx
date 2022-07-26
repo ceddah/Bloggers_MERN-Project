@@ -10,7 +10,7 @@ const BlogCard = ({ post }) => {
   return (
     <div className="w-full h-full pb-5 bg-white border-2 border-gray-200 shadow-lg">
       <img
-        className="w-full md:h-2/4 h-1/4 object-cover bg-center bg-cover"
+        className="w-full md:h-2/4 h-2/4 object-cover bg-center bg-cover"
         src={thumbnail}
         alt="thumbnail"
       />
