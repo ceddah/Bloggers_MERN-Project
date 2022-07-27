@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const NavItems = ({ userId, isAuthenticated }) => {
   const styles =
-    "md:mx-5 mb-5 md:mb-0 md:text-base font-bold transition-all cursor-pointer hover:text-gray-400";
+    "md:mx-5 mb-5 md:mb-0 md:text-base font-bold transition-all cursor-pointer text-slate-500 hover:text-slate-900";
   return [
     { name: "Home", path: ROUTES.HOME },
     { name: "Browse Blogs", path: ROUTES.BROWSE },
@@ -13,18 +13,10 @@ const NavItems = ({ userId, isAuthenticated }) => {
   ].map((item, idx) => {
     if (!isAuthenticated && (item.name === "Profile" || item.name === "Bookmarks")) return null;
     return (
-      // <NavLink to={item.path} key={idx} >
-      //   <li className={styles}>
-      //     {item.name}
-      //   </li>
-      // </NavLink>
       <NavLink
         to={item.path}
         key={idx}
-        className={({ isActive }) => `${styles} ${isActive ? "text-gray-400" : ""}`}
-        // className={(isActive) => {
-        //   console.log(isActive, item.name);
-        // }}
+        className={({ isActive }) => `${styles} ${isActive ? "text-slate-900" : ""}`}
       >
         {item.name}
       </NavLink>

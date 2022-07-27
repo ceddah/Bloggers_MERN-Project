@@ -55,3 +55,14 @@ export const getAllPosts = async (search, category, page) => {
     }
   );
 };
+
+export const postNewPost = async (postData) => {
+  return await fetch(`${SERVER_URL}/api/posts/create-new}`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData),
+  });
+};

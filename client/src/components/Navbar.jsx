@@ -56,8 +56,8 @@ const Navbar = () => {
             onClick={() => setIsModalOpen(true)}
             className="md:ml-10 border-2 bg-white dark:text-[#20232A] flex items-center border-blue-700 transition-all md:text-sm text-xl cursor-pointer rounded-lg px-10 md:px-5 py-3 md:py-0 dark:hover:bg-[#ebebed] hover:bg-[#2D5CD0] font-medium hover:text-white"
           >
-            <AiOutlinePlus className="text-lg" />
-            <span className="xl:block hidden ml-1">Write a Blog</span>
+            <AiOutlinePlus className="text-lg xl:text-xl" />
+            <span className="xl:block hidden ml-1">Publish</span>
           </button>
         )}
         <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />
