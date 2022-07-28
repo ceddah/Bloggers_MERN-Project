@@ -19,6 +19,7 @@ const Browse = () => {
   const dispatch = useDispatch();
   const {
     allPosts: { posts, totalItems },
+    success,
   } = useSelector((state) => state.posts);
 
   const handleCategoryChange = (pressedCategory) => {
@@ -33,13 +34,16 @@ const Browse = () => {
       }
     }
   };
-  console.log(totalItems);
+
   useEffect(() => {
     if (search || category) {
-      setCurrentPage(0);
+      setCurrentPage(1);
+    }
+    if (success) {
+      dispatch(fetchPosts(search, category, currentPage));
     }
     dispatch(fetchPosts(search, category, currentPage));
-  }, [search, category, dispatch, currentPage]);
+  }, [search, category, dispatch, currentPage, success]);
   return (
     <div className="xl:w-3/4 md:w-3/5 w-[90%] mx-auto mt-10 pb-10">
       <h1 className="text-3xl font-semibold mb-8 text-center dark:text-[#F7F7F7]">

@@ -8,10 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { clearPostStatus, createPost } from "../store/actions/postsActions";
 
-// before sending data filter out empty strings that are left/bad file format
-// default thumbnail if bad format
 const DEFAULT_THUMBNAIL = "https://getuikit.com/v2/docs/images/placeholder_600x400.svg";
-const allowedFileTypes = ["jpeg", "jpg", "png", "bmp"];
 const initialPostData = {
   title: "",
   content: "",
@@ -28,10 +25,8 @@ const Modal = ({ handleClose }) => {
     setPostData((prev) => ({ ...prev, [name]: value }));
 
   const handleGalleryInput = (e, i) => {
-    const fileExtension = e.target.files[0].name.split(".").at(-1);
-    if (!allowedFileTypes.includes(fileExtension)) return;
     const newGallery = postData.gallery;
-    newGallery[i] = e.target.files[0];
+    newGallery[i] = e.target.value;
     setPostData((prev) => ({ ...prev, gallery: newGallery }));
   };
 
@@ -46,9 +41,9 @@ const Modal = ({ handleClose }) => {
     }
     const galleryChecked = data.gallery.filter((image) => image !== "");
     data.gallery = galleryChecked;
-
     dispatch(
       createPost(data, () => {
+        setPostData((prev) => ({ ...prev, gallery: ["", "", "", "", ""] }));
         setPostData(initialPostData);
         handleClose();
       })
@@ -58,13 +53,12 @@ const Modal = ({ handleClose }) => {
   useEffect(() => {
     if (success) {
       toast.success("New post created successfully!", { theme: "colored" });
-      dispatch(clearPostStatus());
     }
 
     if (error) {
       toast.error(error, { theme: "colored" });
-      dispatch(clearPostStatus());
     }
+    dispatch(clearPostStatus());
   }, [success, error, dispatch]);
 
   return ReactDOM.createPortal(
@@ -109,8 +103,8 @@ const Modal = ({ handleClose }) => {
           type="text"
           name="thumbnail"
         />
-        <p className="mt-2">Select between one and five images for a Gallery:</p>
-        <GalleryInput handleChange={handleGalleryInput} />
+        <p className="my-2">Choose between one and five images for a Gallery:</p>
+        <GalleryInput handleChange={handleGalleryInput} gallery={postData.gallery} />
         <div className="w-full flex justify-center">
           <button
             className="border-2 bg-white dark:text-[#20232A] border-blue-700 transition-all md:text-lg mt-5 cursor-pointer rounded-lg px-8 md:px-12 py-2 md:py-3 dark:hover:bg-[#ebebed] hover:bg-[#2D5CD0] font-medium hover:text-white"

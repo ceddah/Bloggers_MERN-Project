@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const formidable = require("express-formidable");
 const connectDB = require("./config/database");
 const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/post");

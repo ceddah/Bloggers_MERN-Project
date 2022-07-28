@@ -12,12 +12,15 @@ import { Carousel } from "react-responsive-carousel";
 
 const Home = () => {
   const [newsletter, setNewsletter] = useState("");
-  const { latestPosts } = useSelector((state) => state.posts);
+  const { latestPosts, success } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (success) {
+      dispatch(fetchLatestPosts());
+    }
     dispatch(fetchLatestPosts());
-  }, [dispatch]);
+  }, [dispatch, success]);
   return (
     <>
       <MetaData title="Home" />

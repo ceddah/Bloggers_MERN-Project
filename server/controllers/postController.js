@@ -6,7 +6,6 @@ const ErrorHandler = require("../utils/ErrorHandler");
 exports.createNewPost = async (req, res, next) => {
   const newPost = { ...req.body };
   newPost.author = req.user._id;
-
   try {
     const post = new Post(newPost);
     await post.save();

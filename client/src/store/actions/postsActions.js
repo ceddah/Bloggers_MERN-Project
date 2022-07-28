@@ -56,21 +56,20 @@ export const fetchPosts = (search, category, page) => async (dispatch) => {
 
 export const createPost = (postData, successCallback) => async (dispatch) => {
   try {
-    // const response = await api.postNewPost(postData);
-    // const data = await response.json();
-    // if (data.success) {
-    //   dispatch({
-    //     type: POST_CREATE_SUCCESS,
-    //     payload: data,
-    //   });
-    //   successCallback();
-    // } else {
-    //   dispatch({
-    //     type: POST_CREATE_FAILURE,
-    //     payload: data.message,
-    //   });
-    // }
-    console.log(postData);
+    const response = await api.postNewPost(postData);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: POST_CREATE_SUCCESS,
+        payload: data,
+      });
+      successCallback();
+    } else {
+      dispatch({
+        type: POST_CREATE_FAILURE,
+        payload: data.message,
+      });
+    }
   } catch (error) {
     dispatch({
       type: POST_CREATE_FAILURE,

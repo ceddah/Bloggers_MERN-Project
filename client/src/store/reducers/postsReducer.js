@@ -47,6 +47,7 @@ export const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         success: false,
+        error: action.payload,
       };
     case CLEAR_POST_RESET:
       return {
