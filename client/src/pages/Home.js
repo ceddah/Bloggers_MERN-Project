@@ -7,7 +7,7 @@ import SearchBar from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLatestPosts } from "../store/actions/postsActions";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const Home = () => {

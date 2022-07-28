@@ -66,3 +66,48 @@ export const postNewPost = async (postData) => {
     body: JSON.stringify(postData),
   });
 };
+
+export const postDetail = async (postId) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/${postId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+// comments
+
+export const postNewComment = async (postId, newComment) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/${postId}/new-comment`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text: newComment }),
+  });
+};
+
+export const postEditComment = async (commentId, newComment) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/edit-comment/${commentId}`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text: newComment }),
+  });
+};
+
+export const deleteComment = async (postId, commentId) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/${postId}/remove-comment/${commentId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+};
+
+export const getLikeComment = async (commentId) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/like-comment/${commentId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
