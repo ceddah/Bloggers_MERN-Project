@@ -72,10 +72,12 @@ exports.postComment = async (req, res, next) => {
   const newComment = { ...req.body };
   newComment.author = req.user._id;
   try {
-    const comment = await Comment.create(newComment);
+    const comment = new Comment(newComment);
     const post = await Post.findById(postId);
     post.comments = [...post.comments, comment._id];
+    comment.onPost = post._id;
     await post.save();
+    await comment.save();
     return res.status(201).json({ success: true });
   } catch (error) {
     next(error);
@@ -149,13 +151,51 @@ exports.browsePosts = async (req, res, next) => {
 
 exports.bookmarkPost = async (req, res, next) => {
   const { postId } = req.params;
+  let bookmarks;
   try {
     const user = await User.findById(req.user._id);
-    user.bookmarks = [...user.bookmarks, postId];
-    await user.save();
+    const didUserAlreadyBookmarkPost = user.bookmarks.includes(postId);
+    if (didUserAlreadyBookmarkPost) {
+      bookmarks = user.bookmarks.filter((item) => item.toString() !== postId.toString());
+    } else {
+      bookmarks = [...user.bookmarks, postId];
+    }
+    user.bookmarks = bookmarks;
+    const result = await user.save();
 
     return res.status(201).json({
       success: true,
+      user: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAllBookmarks = async (req, res, next) => {
+  const { page } = req.query;
+  let currentPage = page || 1;
+  const perPage = 3;
+  try {
+    const user = await User.findById(req.user._id);
+    console.log(user.bookmarks);
+    const totalItems = await Post.find({ _id: { $in: user.bookmarks } }).countDocuments();
+    const lastPage = Math.ceil(totalItems / perPage);
+    if (currentPage > lastPage) {
+      currentPage = lastPage;
+    }
+    if (currentPage <= 0) {
+      currentPage = 1;
+    }
+
+    const bookmarks = await Post.find({ _id: { $in: user.bookmarks } })
+      .populate("author", "_id fullName image")
+      .skip((currentPage - 1) * perPage)
+      .limit(perPage);
+    return res.status(200).json({
+      success: true,
+      bookmarks,
+      totalItems,
     });
   } catch (error) {
     next(error);
@@ -172,6 +212,27 @@ exports.latestPosts = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       posts: latest,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.likeComment = async (req, res, next) => {
+  const { commentId } = req.params;
+  let likes;
+  try {
+    const comment = await Comment.findById(commentId);
+    const didUserAlreadyLikeComment = comment.likes.includes(req.user._id);
+    if (didUserAlreadyLikeComment) {
+      likes = comment.likes.filter((userId) => userId.toString() !== req.user._id.toString());
+    } else {
+      likes = [...comment.likes, req.user._id];
+    }
+    comment.likes = likes;
+    await comment.save();
+    return res.status(200).json({
+      success: true,
     });
   } catch (error) {
     next(error);

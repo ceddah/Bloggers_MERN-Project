@@ -6,8 +6,6 @@ require("dotenv").config({ path: "server/config/config.env" });
 
 connectDB();
 
-// AUTHORS
-
 const posts = [
   {
     title: "Pointing My Nose South",

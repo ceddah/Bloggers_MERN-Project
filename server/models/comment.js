@@ -10,6 +10,16 @@ const commentSchema = new mongoose.Schema(
       type: String,
       required: [true, "Comment must have a text"],
     },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    onPost: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
   },
   {
     timestamps: true,
