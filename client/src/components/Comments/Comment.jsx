@@ -16,8 +16,8 @@ const Comment = ({
   handleCommentRemove,
   handleCommentLike,
 }) => {
-  const didUserCreateThisComment = comment.author._id === user._id;
-  const didUserLikeThisPost = comment.likes.includes(user._id);
+  const didUserCreateThisComment = comment.author._id === user?._id;
+  const didUserLikeThisPost = comment.likes.includes(user?._id);
   const date = formatDistance(new Date(comment.updatedAt), new Date(), { addSuffix: true });
   const handleEditClick = () => {
     setNewComment(comment.text);
@@ -51,14 +51,14 @@ const Comment = ({
         <div className="flex-1">
           <div className="flex flex-col">
             <div className="flex items-center gap-3">
-              <p className="font-semibold dark:text-gray-300">{comment.author.fullName}</p>
-              <span className="text-gray-500 dark:text-gray-400">{date}</span>
+              <p className="font-semibold dark:text-gray-600">{comment.author.fullName}</p>
+              <span className="text-gray-400 dark:text-gray-500">{date}</span>
             </div>
-            <div className="mt-5">{comment.text}</div>
+            <div className="mt-5 dark:text-gray-600">{comment.text}</div>
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          {didUserCreateThisComment && user._id && (
+          {didUserCreateThisComment && user?._id && (
             <>
               <button
                 onClick={handleEditClick}
@@ -88,7 +88,7 @@ const Comment = ({
         >
           <AiFillHeart />
         </button>
-        <span className="font-semibold ">
+        <span className="font-semibold dark:text-gray-600">
           {comment.likes.length || 0} {comment.likes.length === 1 ? "like" : "likes"}
         </span>
       </div>

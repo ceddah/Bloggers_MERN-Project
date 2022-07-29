@@ -3,6 +3,9 @@ import {
   SIGN_UP,
   SIGN_IN,
   SIGN_OUT,
+  POST_BOOKMARK_SUCCESS,
+  POST_BOOKMARK_FAILURE,
+  POST_BOOKMARK_RESET,
   CLEAR_ERR_AND_STATUS,
   AUTH_ERROR,
 } from "../../constants/authActions";
@@ -101,8 +104,43 @@ const getCurrentUser = () => async (dispatch) => {
   }
 };
 
+const bookmarkPost = (postId) => async (dispatch) => {
+  try {
+    const response = await api.getBookmarkPost(postId);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: POST_BOOKMARK_SUCCESS,
+        payload: data.user,
+      });
+    } else {
+      dispatch({
+        type: POST_BOOKMARK_FAILURE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: POST_BOOKMARK_FAILURE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
 const clearAuthStatus = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERR_AND_STATUS });
 };
 
-export { signUpAction, signInAction, getCurrentUser, clearAuthStatus, signOutAction };
+const clearBookmarkStatus = () => async (dispatch) => {
+  dispatch({ type: POST_BOOKMARK_RESET });
+};
+
+export {
+  signUpAction,
+  signInAction,
+  getCurrentUser,
+  clearAuthStatus,
+  signOutAction,
+  bookmarkPost,
+  clearBookmarkStatus,
+};

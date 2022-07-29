@@ -2,6 +2,9 @@ import {
   SIGN_UP,
   SIGN_IN,
   SIGN_OUT,
+  POST_BOOKMARK_SUCCESS,
+  POST_BOOKMARK_FAILURE,
+  POST_BOOKMARK_RESET,
   CLEAR_ERR_AND_STATUS,
   AUTH_ERROR,
 } from "../../constants/authActions";
@@ -11,6 +14,8 @@ const initialState = {
   isAuthenticated: false,
   error: null,
   success: false,
+  bookmarkSuccess: false,
+  bookmarkError: null,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -33,6 +38,24 @@ export const authReducer = (state = initialState, action) => {
       localStorage.removeItem("user");
       return {
         ...initialState,
+      };
+    case POST_BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        bookmarkSuccess: true,
+        user: action.payload,
+      };
+    case POST_BOOKMARK_FAILURE:
+      return {
+        ...state,
+        bookmarkSuccess: false,
+        bookmarkError: action.payload,
+      };
+    case POST_BOOKMARK_RESET:
+      return {
+        ...state,
+        bookmarkSuccess: false,
+        bookmarkError: null,
       };
     case AUTH_ERROR:
       return {

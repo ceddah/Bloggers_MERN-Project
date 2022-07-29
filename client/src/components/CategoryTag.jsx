@@ -21,8 +21,6 @@ const CategoryTag = ({
     <p
       className="text-white rounded-xl px-5 py-0.5 my-2 font-semibold cursor-pointer"
       style={{ backgroundColor: isActive ? "#ccc" : color }}
-      // style={{ backgroundColor: color, filter: isActive ? "grayscale(100%)" : "none" }}
-      // style={{ backgroundColor: color, opacity: isActive ? "30%" : "100%" }}
       onClick={() => handleCategoryChange(category)}
     >
       {renderShortName(category)}

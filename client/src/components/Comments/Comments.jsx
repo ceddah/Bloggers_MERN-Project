@@ -20,7 +20,7 @@ const Comments = ({ commentsRef, postComments, postId }) => {
   const { user } = useSelector((state) => state.auth);
 
   const submitOrEditComment = () => {
-    if (newComment !== "") {
+    if (newComment !== "" && user?._id) {
       if (editing.status) {
         dispatch(editComment(editing.commentId, newComment));
         setEditing({ status: false, commentId: null });
@@ -36,7 +36,9 @@ const Comments = ({ commentsRef, postComments, postId }) => {
   };
 
   const handleCommentLike = (commentId) => {
-    dispatch(likeComment(commentId));
+    if (user?._id) {
+      dispatch(likeComment(commentId));
+    }
   };
 
   return (
@@ -46,7 +48,7 @@ const Comments = ({ commentsRef, postComments, postId }) => {
         <span className="mr-2">{postComments.length}</span>
         Comments
       </h1>
-      {user?._id && (
+      {user?._id ? (
         <div className="my-5 flex flex-col items-center">
           <textarea
             placeholder="Write up a comment for this blog"
@@ -63,6 +65,10 @@ const Comments = ({ commentsRef, postComments, postId }) => {
           >
             {editing.status ? "Edit your comment" : "Submit your comment"}
           </button>
+        </div>
+      ) : (
+        <div className="text-center text-xl m-10 font-semibold">
+          You must be logged in to be able to post your comment.
         </div>
       )}
       <div className="mt-24 lg:w-3/4 md-w[85%] w-full mx-auto">
@@ -82,7 +88,7 @@ const Comments = ({ commentsRef, postComments, postId }) => {
             ))
         ) : (
           <div className="mt-20 text-2xl text-center dark:text-[#F7F7F7]">
-            No cocmments made yet. Be first one to comment on this blog!
+            No comments made yet. Be first one to comment on this blog!
           </div>
         )}
       </div>

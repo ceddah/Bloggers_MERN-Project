@@ -9,7 +9,7 @@ const Footer = () => {
   const [newsletter, setNewsletter] = useState("");
   return (
     <div className="bg-[#2D5CD0] dark:bg-[#33373E] p-10 flex text-center md:text-left">
-      <div className="hidden md:block">
+      <div className="hidden md:block select-none">
         <img className="w-[650px]" src={SocialImage} alt="socials" />
       </div>
       <div className="flex flex-col justify-center items-center">
@@ -29,10 +29,10 @@ const Footer = () => {
             <SocialIcon key={item.name} href={item.href} icon={item.icon} />
           ))}
         </div>
-        <p className="flex items-center mt-10 text-gray-300">
+        <a className="flex items-center mt-10 text-gray-300" href="mailto:contact@example.com">
           <BiEnvelope className="mr-3 text-2xl" />
-          <a href="mailto:contact@example.com">contact@example.com</a>
-        </p>
+          <p>contact@example.com</p>
+        </a>
       </div>
     </div>
   );

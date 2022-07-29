@@ -5,6 +5,8 @@ import {
   ALL_POSTS_DATA,
   POST_CREATE_SUCCESS,
   POST_CREATE_FAILURE,
+  FETCH_BOOKMARK_SUCCESS,
+  FETCH_BOOKMARK_FAILURE,
 } from "../../constants/postsConstants";
 
 const initialState = {
@@ -14,6 +16,10 @@ const initialState = {
   },
   latestPosts: [],
   postDetail: null,
+  bookmarks: {
+    posts: [],
+    totalItems: 0,
+  },
   success: false,
   error: null,
 };
@@ -48,6 +54,25 @@ export const postsReducer = (state = initialState, action) => {
         ...state,
         success: false,
         error: action.payload,
+      };
+    case FETCH_BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        success: true,
+        bookmarks: {
+          posts: action.payload.bookmarks,
+          totalItems: action.payload.totalItems,
+        },
+      };
+    case FETCH_BOOKMARK_FAILURE:
+      return {
+        ...state,
+        success: false,
+        error: action.payload,
+        bookmarks: {
+          posts: [],
+          totalItems: 0,
+        },
       };
     case CLEAR_POST_RESET:
       return {

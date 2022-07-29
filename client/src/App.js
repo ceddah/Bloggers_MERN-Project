@@ -18,9 +18,6 @@ const Profile = lazy(() => import("./pages/Profile"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // protected routes
-// upload route; creare new blog -- MODAL
-// maybe change image upload fromm url to file for both avatar and blogs
-// change navbar active to black and standard to dark gray
 // button for triggering create new blog on mobile
 
 const App = () => {

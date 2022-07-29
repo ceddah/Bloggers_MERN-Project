@@ -4,10 +4,11 @@ import { useDebounce } from "use-debounce";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../util/Layout";
 import SearchBar from "../components/SearchBar";
-import BlogCard from "../components/BlogCard";
 import CategoryTag from "../components/CategoryTag";
 import Pagination from "../components/Pagination";
 import { categoryColors } from "../constants/categoryColors";
+import PostsContainer from "../components/PostsContainer";
+import MetaData from "../components/MetaData";
 
 // maybe use skeleton while loading posts -- add ALL_POSTS_LOADING action which will change loading variable in store
 
@@ -70,15 +71,7 @@ const Browse = () => {
           isSearching
         />
       </div>
-      <div className="flex flex-col xl:flex-row xl:h-[700px] h-full mb-10 gap-5">
-        {posts.length > 0 ? (
-          posts.map((post) => <BlogCard key={post?._id} post={post} />)
-        ) : (
-          <h1 className="w-full md:mt-10 font-semibold text-center text-2xl">
-            No results found matching your criteria.
-          </h1>
-        )}
-      </div>
+      <PostsContainer posts={posts} noPostsMessage="No results found matching your criteria." />
       {Math.ceil(totalItems / 3) > 1 && (
         <Pagination
           pageCount={Math.ceil(totalItems / 3)}
@@ -89,4 +82,4 @@ const Browse = () => {
   );
 };
 
-export default Layout(Browse);
+export default Layout(Browse, "Browse and search blogs");

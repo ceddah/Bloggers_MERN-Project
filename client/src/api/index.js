@@ -111,3 +111,17 @@ export const getLikeComment = async (commentId) => {
     credentials: "include",
   });
 };
+
+export const getBookmarkPost = async (postId) => {
+  return await fetch(`${SERVER_URL}/api/posts/bookmark/${postId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+export const getAllBookmarks = async (currentPage) => {
+  return await fetch(`${SERVER_URL}/api/posts/my-bookmarks?page=${currentPage}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};

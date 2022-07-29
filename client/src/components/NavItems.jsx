@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const NavItems = ({ userId, isAuthenticated }) => {
   const styles =
-    "md:mx-5 mb-5 md:mb-0 md:text-base font-bold transition-all cursor-pointer text-slate-500 hover:text-slate-900";
+    "md:mx-5 mb-5 md:mb-0 md:text-base font-bold transition-all cursor-pointer text-slate-500 hover:text-slate-900 dark:text-gray-300 dark:hover:text-gray-200";
   return [
     { name: "Home", path: ROUTES.HOME },
     { name: "Browse Blogs", path: ROUTES.BROWSE },
