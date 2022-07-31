@@ -37,12 +37,27 @@ const userSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+  lifetimePosts: {
+    type: Number,
+    default: 0,
+  },
   bookmarks: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
     },
   ],
+  socials: {
+    facebook: {
+      type: String,
+    },
+    twitter: {
+      type: String,
+    },
+    linkedin: {
+      type: String,
+    },
+  },
 });
 
 userSchema.pre("save", async function (next) {

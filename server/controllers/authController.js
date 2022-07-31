@@ -3,7 +3,6 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const setCookie = require("../utils/setCookie");
 
 exports.signUp = async (req, res, next) => {
-  // const { fullName, username, email, password, image } = req.body;
   const user = new User(req.body);
 
   try {

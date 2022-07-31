@@ -125,3 +125,36 @@ export const getAllBookmarks = async (currentPage) => {
     credentials: "include",
   });
 };
+
+//user
+
+export const getUserProfileDetails = async (userId) => {
+  return await fetch(`${SERVER_URL}/api/user-detail/${userId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+// { currentPassword, newPassword }
+export const postResetPassword = async (userId, data) => {
+  return await fetch(`${SERVER_URL}/api/user-detail/reset-password/${userId}`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};
+
+// { socials: { facebook: "asdas", twitter: "adas", linkedin: "asdasas" } }
+export const postSetSocial = async (userId, data) => {
+  return await fetch(`${SERVER_URL}/api/user-detail/set-social/${userId}`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};
