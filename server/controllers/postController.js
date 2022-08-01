@@ -7,7 +7,7 @@ exports.createNewPost = async (req, res, next) => {
   const newPost = { ...req.body };
   newPost.author = req.user._id;
   try {
-    const user = User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     user.lifetimePosts = user.lifetimePosts + 1;
     await user.save();
     const post = new Post(newPost);

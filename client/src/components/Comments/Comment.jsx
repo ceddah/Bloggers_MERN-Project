@@ -18,7 +18,7 @@ const Comment = ({
 }) => {
   const didUserCreateThisComment = comment.author._id === user?._id;
   const didUserLikeThisPost = comment.likes.includes(user?._id);
-  const date = formatDistance(new Date(comment.updatedAt), new Date(), { addSuffix: true });
+  const date = formatDistance(new Date(comment.createdAt), new Date(), { addSuffix: true });
   const handleEditClick = () => {
     setNewComment(comment.text);
     setEditing((prev) => {
@@ -41,17 +41,21 @@ const Comment = ({
     <div className="w-full md:px-12 md:mt-12 pt-8 pb-4 min-h-[200px] mt-5 px-5 bg-[#fafafa] border-[1px] border-[#ccc] dark:border-blue-400">
       <div className="flex min-h-full items-start gap-5">
         <div>
-          <img
-            style={{ height: "50px", width: "50px" }}
-            className="rounded-lg"
-            src={comment.author.image}
-            alt={comment.author.username}
-          />
+          <Link to={`/profile/${comment.author._id}`}>
+            <img
+              style={{ height: "50px", width: "50px" }}
+              className="rounded-lg"
+              src={comment.author.image}
+              alt={comment.author.username}
+            />
+          </Link>
         </div>
         <div className="flex-1">
           <div className="flex flex-col">
             <div className="flex items-center gap-3">
-              <p className="font-semibold dark:text-gray-600">{comment.author.fullName}</p>
+              <Link to={`/profile/${comment.author._id}`}>
+                <p className="font-semibold dark:text-gray-600">{comment.author.fullName}</p>
+              </Link>
               <span className="text-gray-400 dark:text-gray-500">{date}</span>
             </div>
             <div className="mt-5 dark:text-gray-600">{comment.text}</div>

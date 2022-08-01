@@ -74,7 +74,7 @@ const Comments = ({ commentsRef, postComments, postId }) => {
       <div className="mt-24 lg:w-3/4 md-w[85%] w-full mx-auto">
         {postComments.length > 0 ? (
           postComments
-            .sort((commentA, commentB) => (commentA.updatedAt > commentB.updatedAt ? -1 : 1))
+            .sort((commentA, commentB) => (commentA.createdAt > commentB.createdAt ? -1 : 1))
             .map((comment) => (
               <Comment
                 setEditing={setEditing}

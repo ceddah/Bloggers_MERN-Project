@@ -108,7 +108,7 @@ const Auth = () => {
                 />
                 <Input
                   type="text"
-                  placeholder="Enter your first name here"
+                  placeholder="Enter your last name here"
                   name="lastName"
                   value={formData.lastName}
                   handleChange={handleChange}

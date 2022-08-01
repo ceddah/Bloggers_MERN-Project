@@ -43,8 +43,8 @@ const Modal = ({ handleClose }) => {
     data.gallery = galleryChecked;
     dispatch(
       createPost(data, () => {
-        setPostData((prev) => ({ ...prev, gallery: ["", "", "", "", ""] }));
         setPostData(initialPostData);
+        setPostData((prev) => ({ ...prev, gallery: ["", "", "", "", ""] }));
         handleClose();
       })
     );

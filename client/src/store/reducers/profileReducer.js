@@ -4,6 +4,8 @@ import {
   PROFILE_FETCH_RESET,
   PROFILE_PASSWORD_RESET_SUCCESS,
   PROFILE_PASSWORD_RESET_FAILURE,
+  PROFILE_UPDATE_SOCIALS_SUCCESS,
+  PROFILE_UPDATE_SOCIALS_FAILURE,
 } from "../../constants/profileActions";
 
 const initialState = {
@@ -20,10 +22,10 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        success: true,
       };
     case PROFILE_FETCH_FAILURE:
     case PROFILE_PASSWORD_RESET_FAILURE:
+    case PROFILE_UPDATE_SOCIALS_FAILURE:
       return {
         ...state,
         success: false,
@@ -36,6 +38,11 @@ export const profileReducer = (state = initialState, action) => {
         error: null,
       };
     case PROFILE_PASSWORD_RESET_SUCCESS:
+      return {
+        ...state,
+        success: true,
+      };
+    case PROFILE_UPDATE_SOCIALS_SUCCESS:
       return {
         ...state,
         success: true,

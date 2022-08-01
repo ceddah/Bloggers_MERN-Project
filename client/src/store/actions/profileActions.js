@@ -5,6 +5,8 @@ import {
   PROFILE_FETCH_RESET,
   PROFILE_PASSWORD_RESET_SUCCESS,
   PROFILE_PASSWORD_RESET_FAILURE,
+  PROFILE_UPDATE_SOCIALS_SUCCESS,
+  PROFILE_UPDATE_SOCIALS_FAILURE,
 } from "../../constants/profileActions";
 
 export const fetchUserProfileDetails = (userId) => async (dispatch) => {
@@ -58,17 +60,17 @@ export const setSocialLinks = (userId, userData) => async (dispatch) => {
     const data = await response.json();
     if (data.success) {
       dispatch({
-        type: PROFILE_PASSWORD_RESET_SUCCESS,
+        type: PROFILE_UPDATE_SOCIALS_SUCCESS,
       });
     } else {
       dispatch({
-        type: PROFILE_PASSWORD_RESET_FAILURE,
+        type: PROFILE_UPDATE_SOCIALS_FAILURE,
         payload: data.message,
       });
     }
   } catch (error) {
     dispatch({
-      type: PROFILE_PASSWORD_RESET_FAILURE,
+      type: PROFILE_UPDATE_SOCIALS_FAILURE,
       payload: "Service Error, please try again.",
     });
   }

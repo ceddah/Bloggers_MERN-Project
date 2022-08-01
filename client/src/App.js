@@ -19,6 +19,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 // protected routes
 // button for triggering create new blog on mobile
+// active nav-item on dark mode
 
 const App = () => {
   const { isModalOpen, setIsModalOpen } = useModalContext();

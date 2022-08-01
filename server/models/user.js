@@ -50,12 +50,15 @@ const userSchema = new mongoose.Schema({
   socials: {
     facebook: {
       type: String,
+      default: "",
     },
     twitter: {
       type: String,
+      default: "",
     },
     linkedin: {
       type: String,
+      default: "",
     },
   },
 });

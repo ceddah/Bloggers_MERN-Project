@@ -21,7 +21,7 @@ exports.getUserDetails = async (req, res, next) => {
       },
     ]);
     const posts = await Post.find({ author: userId })
-      .select("title author createdAt")
+      .select("title author createdAt updatedAt")
       .populate("author", "image");
 
     return res.status(200).json({
@@ -81,13 +81,4 @@ exports.setSocialLink = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
-
-exports.numberOfPostsByUser_TEST = async (req, res, next) => {
-  const { userId } = req.params;
-  const numOfPosts = await Post.find({ author: userId }).countDocuments();
-  return res.status(200).json({
-    success: true,
-    numOfPosts,
-  });
 };
