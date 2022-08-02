@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
 import Layout from "../util/Layout";
 import { useParams } from "react-router-dom";
-import { fetchUserProfileDetails, clearProfileStatus } from "../store/actions/profileActions";
+import { toast } from "react-toastify";
+import {
+  fetchUserProfileDetails,
+  clearProfileStatus,
+  resetUserPassword,
+} from "../store/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
 import { DisplaySocialLinks, InformationCard, RecentActivities } from "../components/Profile/";
 import { setSocialLinks } from "../store/actions/profileActions";
+import ResetPassword from "../components/ResetPassword";
 // Maybe add another section at the bottom for managing your BLogs
 
 const Profile = () => {
@@ -26,8 +32,17 @@ const Profile = () => {
     dispatch(setSocialLinks(authUser?._id, data));
   };
 
+  const handlePasswordReset = (passwords) => {
+    dispatch(resetUserPassword(passwords));
+  };
+
   useEffect(() => {
-    if (success || error) {
+    if (success) {
+      toast.success("Success!", { theme: "colored" });
+      dispatch(clearProfileStatus());
+    }
+    if (error) {
+      toast.error(error, { theme: "colored" });
       dispatch(clearProfileStatus());
     }
     dispatch(fetchUserProfileDetails(userId));
@@ -38,9 +53,9 @@ const Profile = () => {
   }
 
   return (
-    <div className="md:w-3/4 w-[90%] mx-auto flex flex-col items-center mt-10 pb-10">
+    <div className="lg:w-3/4 w-[90%] mx-auto flex flex-col items-center mt-10 pb-10">
       <h1 className="text-3xl font-semibold mb-8 text-center dark:text-[#F7F7F7]">Profile</h1>
-      <div className="w-full flex lg:gap-12 gap-4 md:items-start md:mt-12 mt-8 flex-col md:flex-row">
+      <div className="w-full flex lg:gap-12 gap-4 lg:items-start lg:mt-12 mt-8 flex-col lg:flex-row">
         <div className="flex-1 flex flex-col items-center">
           <div className="profile-avatar">
             <img
@@ -56,7 +71,14 @@ const Profile = () => {
             isActiveUserProfile={isActiveUserProfile}
             handleSetSocials={handleSetSocials}
           />
-          <h3>Reset password fields</h3>
+          {authUser && isActiveUserProfile && (
+            <>
+              <h3 className="text-xl font-semibold my-4 dark:text-[#F7F7F7]">
+                Reset your password
+              </h3>
+              <ResetPassword handlePasswordReset={handlePasswordReset} />
+            </>
+          )}
         </div>
         <div className="flex-1 flex flex-col items-center">
           <h1 className="text-xl font-semibold mb-4 dark:text-[#F7F7F7]">

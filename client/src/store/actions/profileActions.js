@@ -3,8 +3,8 @@ import {
   PROFILE_FETCH_SUCCESS,
   PROFILE_FETCH_FAILURE,
   PROFILE_FETCH_RESET,
-  PROFILE_PASSWORD_RESET_SUCCESS,
-  PROFILE_PASSWORD_RESET_FAILURE,
+  PROFILE_PASSWORD_SUCCESS,
+  PROFILE_PASSWORD_FAILURE,
   PROFILE_UPDATE_SOCIALS_SUCCESS,
   PROFILE_UPDATE_SOCIALS_FAILURE,
 } from "../../constants/profileActions";
@@ -32,23 +32,23 @@ export const fetchUserProfileDetails = (userId) => async (dispatch) => {
   }
 };
 
-export const resetUserPassword = (userId, userData) => async (dispatch) => {
+export const resetUserPassword = (userData) => async (dispatch) => {
   try {
-    const response = await api.postResetPassword(userId, userData);
+    const response = await api.postResetPassword(userData);
     const data = await response.json();
     if (data.success) {
       dispatch({
-        type: PROFILE_PASSWORD_RESET_SUCCESS,
+        type: PROFILE_PASSWORD_SUCCESS,
       });
     } else {
       dispatch({
-        type: PROFILE_PASSWORD_RESET_FAILURE,
+        type: PROFILE_PASSWORD_FAILURE,
         payload: data.message,
       });
     }
   } catch (error) {
     dispatch({
-      type: PROFILE_PASSWORD_RESET_FAILURE,
+      type: PROFILE_PASSWORD_FAILURE,
       payload: "Service Error, please try again.",
     });
   }

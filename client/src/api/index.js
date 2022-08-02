@@ -136,8 +136,8 @@ export const getUserProfileDetails = async (userId) => {
 };
 
 // { currentPassword, newPassword }
-export const postResetPassword = async (userId, data) => {
-  return await fetch(`${SERVER_URL}/api/user-detail/reset-password/${userId}`, {
+export const postResetPassword = async (data) => {
+  return await fetch(`${SERVER_URL}/api/user-detail/reset-password`, {
     method: "POST",
     credentials: "include",
     headers: {

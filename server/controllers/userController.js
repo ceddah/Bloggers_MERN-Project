@@ -35,34 +35,32 @@ exports.getUserDetails = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-  // recent activity, all posts and comments by user
-  // fullnamem @username
-  // stats
-  // email???
-  // number of posts used made
-  // number of comments user mad
-  // lifetime posts
-  // role = user/admin
-  // joined date
-  // bookmarks lengthh
 };
 
 exports.postResetPassword = async (req, res, next) => {
-  const { userId } = req.params;
   const { currentPassword, newPassword } = req.body;
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(req.user._id).select("+password");
 
-    const isPasswordCorrect = await user.comparePasswords(currentPassword);
+    const isPasswordCorrect = await user.comparePassword(currentPassword);
     if (!isPasswordCorrect) {
       return next(
         new ErrorHandler("You must enter your current password correctly in order to change it.")
       );
     }
+    if (newPassword.length < 6) {
+      return next(new ErrorHandler("Your new password must be at least 6 characters long."));
+    }
     const newHash = await bcrypt.hash(newPassword, 10);
-    user.password = newHash;
-    await user.save();
-    return res.status(203).json({
+    // actual update
+    await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        password: newHash,
+      },
+      { new: true }
+    );
+    return res.status(201).json({
       success: true,
     });
   } catch (error) {
