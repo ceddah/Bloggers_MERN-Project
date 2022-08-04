@@ -80,3 +80,17 @@ exports.setSocialLink = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.setShortBio = async (req, res, next) => {
+  const { bio } = req.body;
+  try {
+    const user = await User.findById(req.user._id);
+    user.shortBio = bio;
+    await user.save();
+    return res.status(201).json({
+      success: true,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

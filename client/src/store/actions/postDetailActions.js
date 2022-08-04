@@ -4,6 +4,8 @@ import {
   POST_DETAIL_SUCCESS,
   POST_DETAIL_FAILURE,
   POST_DETAIL_RESET,
+  POST_SUBMIT_RATING_SUCCESS,
+  POST_SUBMIT_RATING_FAILURE,
 } from "../../constants/postsConstants";
 
 export const fetchPostDetails = (postId, successCallback) => async (dispatch) => {
@@ -113,6 +115,28 @@ export const likeComment = (commentId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: POST_DETAIL_FAILURE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
+export const submitRating = (postId, rating) => async (dispatch) => {
+  try {
+    const response = await api.getSubmitReting(postId, rating);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: POST_SUBMIT_RATING_SUCCESS,
+      });
+    } else {
+      dispatch({
+        type: POST_SUBMIT_RATING_FAILURE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: POST_SUBMIT_RATING_FAILURE,
       payload: "Service Error, please try again.",
     });
   }

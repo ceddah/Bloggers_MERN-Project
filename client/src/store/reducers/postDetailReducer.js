@@ -3,6 +3,8 @@ import {
   POST_DETAIL_SUCCESS,
   POST_DETAIL_FAILURE,
   POST_DETAIL_RESET,
+  POST_SUBMIT_RATING_SUCCESS,
+  POST_SUBMIT_RATING_FAILURE,
 } from "../../constants/postsConstants";
 
 const initialState = {
@@ -23,7 +25,13 @@ export const postDetailReducer = (state = initialState, action) => {
         ...state,
         success: true,
       };
+    case POST_SUBMIT_RATING_SUCCESS:
+      return {
+        ...state,
+        success: true,
+      };
     case POST_DETAIL_FAILURE:
+    case POST_SUBMIT_RATING_FAILURE:
       return {
         ...state,
         error: action.payload,

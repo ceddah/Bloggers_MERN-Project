@@ -41,7 +41,7 @@ const Home = () => {
           btnText="Subscribe"
         />
       </div>
-      <div className="md:w-2/4 md:h-[620px] h-full w-full rounded mt-10">
+      <div className="lg:w-2/4 md:h-[620px] h-full w-full rounded mt-10">
         {latestPosts.length > 0 && (
           <Carousel>
             {latestPosts.map((post) => (

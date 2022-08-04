@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import CategoryTag from "./CategoryTag";
 import Avatar from "./Avatar";
+import Ratings from "./Ratings";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { categoryColors } from "../constants/categoryColors";
@@ -11,7 +12,7 @@ import { bookmarkPost, clearBookmarkStatus } from "../store/actions/authActions"
 const BlogCard = ({ post }) => {
   const dispatch = useDispatch();
   const { user, bookmarkSuccess, bookmarkError } = useSelector((state) => state.auth);
-  const { thumbnail, title, content, category, createdAt, author, _id } = post;
+  const { thumbnail, title, content, category, createdAt, author, rating } = post;
   const color = categoryColors.find((color) => color.name === category).color;
   const didUserBookmarkThisPost = user && user.bookmarks.includes(post?._id);
 
@@ -40,6 +41,7 @@ const BlogCard = ({ post }) => {
       />
       <div className="flex flex-col items-start px-10 pt-3">
         <CategoryTag color={color} category={category} />
+        <Ratings rating={rating} />
         <Link to={`/blog-read/${post?._id}`}>
           <h1 className="font-bold text-xl text-left mt-2 truncate whitespace-pre-line">{title}</h1>
         </Link>
@@ -50,10 +52,10 @@ const BlogCard = ({ post }) => {
           </Link>
         </p>
         <Avatar
-          img={author.image}
-          name={author.fullName}
+          img={author?.image}
+          name={author?.fullName}
           createdAt={createdAt}
-          userId={author._id}
+          userId={author?._id}
         />
       </div>
       {user?._id && (

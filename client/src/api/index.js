@@ -158,3 +158,23 @@ export const postSetSocial = async (userId, data) => {
     body: JSON.stringify(data),
   });
 };
+
+export const postUpdateBio = async (newBio) => {
+  return await fetch(`${SERVER_URL}/api/user-detail/set-short-bio`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      bio: newBio,
+    }),
+  });
+};
+
+export const getSubmitReting = async (postId, rating) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/${postId}/update-ratings/?rating=${rating}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};

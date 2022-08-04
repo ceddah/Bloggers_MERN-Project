@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user");
+const Report = require("../models/report");
 const ErrorHandler = require("../utils/ErrorHandler");
 
 exports.createNewPost = async (req, res, next) => {
@@ -181,7 +182,6 @@ exports.getAllBookmarks = async (req, res, next) => {
   const perPage = 3;
   try {
     const user = await User.findById(req.user._id);
-    console.log(user.bookmarks);
     const totalItems = await Post.find({ _id: { $in: user.bookmarks } }).countDocuments();
     const lastPage = Math.ceil(totalItems / perPage);
     if (currentPage > lastPage) {
@@ -236,6 +236,67 @@ exports.likeComment = async (req, res, next) => {
     await comment.save();
     return res.status(200).json({
       success: true,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.setPostRatings = async (req, res, next) => {
+  const { postId } = req.params;
+  const { rating } = req.query;
+  const ratingNum = Number(rating);
+  try {
+    const post = await Post.findById(postId);
+    if (post.rating.votedUsers.includes(req.user._id)) {
+      return next(new ErrorHandler("You have already submitted your vote.", 400));
+    }
+    post.rating.votes += 1;
+    post.rating.ratings = [...post.rating.ratings, ratingNum];
+    post.rating.votedUsers = [...post.rating.votedUsers, req.user._id];
+    await post.save();
+    return res.status(201).json({
+      success: true,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.postReportPost = async (req, res, next) => {
+  const { postId } = req.params;
+  const { reportType } = req.body;
+
+  try {
+    const post = await Post.findById(postId);
+    const user = await User.findById(req.user._id);
+    const newReport = await Report.create({
+      post: post._id,
+      submittedBy: user._id,
+      reportType,
+    });
+    post.reports.count += 1;
+    post.reports.reportedFor = [...post.reports.reportedFor, reportType];
+    post.reports.allReports = [...post.reports.allReports, newReport._id];
+    // Automatically removing posts with more then 5 reports
+    // else admin can decide whether to remove them
+    let postResult;
+    if (post.reports.count >= 5) {
+      postResult = await Post.findByIdAndRemove(post._id);
+    } else {
+      postResult = await post.save();
+    }
+    user.reportedPosts.count += 1;
+    user.reportedPosts.reports = [...user.reportedPosts.reports, newReport._id];
+    if (user.reportedPosts.count >= 10) {
+      user.isBannedFromPosting = true;
+    }
+    const userResult = await user.save();
+    return res.status(201).json({
+      success: true,
+      postResult,
+      userResult,
+      newReport,
     });
   } catch (error) {
     next(error);

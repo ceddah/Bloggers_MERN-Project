@@ -11,6 +11,8 @@ const {
   getAllBookmarks,
   bookmarkPost,
   latestPosts,
+  setPostRatings,
+  postReportPost,
 } = require("../controllers/postController");
 const requireAuth = require("../middlewares/requireAuth");
 const router = express.Router();
@@ -27,7 +29,14 @@ router.route("/latest-posts").get(latestPosts);
 // Comments
 router.route("/detail/:postId/new-comment").post(requireAuth, postComment);
 router.route("/detail/:postId/remove-comment/:commentId").delete(requireAuth, removeComment);
+// CHECK THIS CONTROLLER, it seems that onPost property is lost after the update?
 router.route("/detail/edit-comment/:commentId").post(requireAuth, editComment);
 router.route("/detail/like-comment/:commentId").get(requireAuth, likeComment);
+
+// Ratings
+router.route("/detail/:postId/update-ratings").get(requireAuth, setPostRatings);
+
+// Reports
+router.route("/detail/:postId/report-post").post(requireAuth, postReportPost);
 
 module.exports = router;

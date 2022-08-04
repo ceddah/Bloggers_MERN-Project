@@ -6,6 +6,8 @@ import {
   PROFILE_PASSWORD_FAILURE,
   PROFILE_UPDATE_SOCIALS_SUCCESS,
   PROFILE_UPDATE_SOCIALS_FAILURE,
+  PROFILE_BIO_UPDATE_SUCCESS,
+  PROFILE_BIO_UPDATE_FAILURE,
 } from "../../constants/profileActions";
 
 const initialState = {
@@ -28,9 +30,15 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         success: true,
       };
+    case PROFILE_BIO_UPDATE_SUCCESS:
+      return {
+        ...state,
+        success: true,
+      };
     case PROFILE_FETCH_FAILURE:
     case PROFILE_PASSWORD_FAILURE:
     case PROFILE_UPDATE_SOCIALS_FAILURE:
+    case PROFILE_BIO_UPDATE_FAILURE:
       return {
         ...state,
         success: false,

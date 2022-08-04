@@ -6,6 +6,7 @@ const formidable = require("express-formidable");
 const connectDB = require("./config/database");
 const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/post");
+const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 require("dotenv").config({ path: "server/config/config.env" });
@@ -29,6 +30,7 @@ app.use(morgan("dev"));
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/user-detail", userRoutes);
+app.use("/api/manage", adminRoutes);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {

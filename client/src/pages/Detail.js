@@ -1,12 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPostDetails, clearPostDetailStatus } from "../store/actions/postDetailActions";
+import {
+  fetchPostDetails,
+  submitRating,
+  clearPostDetailStatus,
+} from "../store/actions/postDetailActions";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Layout from "../util/Layout";
 import CategoryTag from "../components/CategoryTag";
 import Avatar from "../components/Avatar";
+import Ratings from "../components/Ratings";
 import Comments from "../components/Comments/Comments";
+import SelectRating from "../components/SelectRating";
 import { categoryColors } from "../constants/categoryColors";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -17,10 +23,17 @@ const Detail = () => {
   const dispatch = useDispatch();
   const { blogId } = useParams();
   const { post, success, error } = useSelector((state) => state.postDetail);
+  const { user } = useSelector((state) => state.auth);
   const commentsRef = useRef();
-  console.log(post);
+  const alreadyGaveRating = post?.rating.votedUsers.includes(user?._id);
 
   const handleGoToCommentSection = () => commentsRef.current.scrollIntoView({ behavior: "smooth" });
+
+  const handleUpdateRating = (rating) => {
+    if (rating >= 0 && rating <= 5) {
+      dispatch(submitRating(post._id, rating + 1));
+    }
+  };
 
   useEffect(() => {
     if (success) {
@@ -64,18 +77,23 @@ const Detail = () => {
             userId={post.author._id}
           />
         </div>
-        {post.comments.length > 0 && (
-          <div className="w-full flex justify-end mt-12">
-            <button
-              type="button"
-              onClick={handleGoToCommentSection}
-              className="flex items-center bg-gray-100 hover:bg-gray-200 rounded-lg py-2 px-6"
-            >
-              Go to comments
-              <AiOutlineArrowDown className="ml-2 text-2xl text-gray-600" />
-            </button>
-          </div>
-        )}
+        <div className="w-full flex md:flex-row md:justify-between mt-12 gap-5 md:gap-0 flex-col items-center">
+          <Ratings rating={post?.rating} />
+          {post.comments.length > 0 ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleGoToCommentSection}
+                className="flex items-center bg-gray-100 hover:bg-gray-200 rounded-lg py-2 px-6"
+              >
+                Go to comments
+                <AiOutlineArrowDown className="ml-2 text-2xl text-gray-600" />
+              </button>
+            </div>
+          ) : (
+            <div className="flex-1"></div>
+          )}
+        </div>
         <div className="mt-32">
           <div className="border-b-4 mb-5 border-[#2D5CD0] w-1/4 h-[5px]"></div>
           <p className="leading-8 text-lg text-[#555] tracking-wide dark:text-gray-300">
@@ -92,6 +110,14 @@ const Detail = () => {
                 <img key={src} src={src} alt={post.name} />
               ))}
             </Carousel>
+          </div>
+        )}
+        {!alreadyGaveRating && (
+          <div className="w-full my-10 flex flex-col justify-center items-center">
+            <h1 className="font-semibold dark:text-gray-300 text-lg mb-3">
+              How did you like this blog?
+            </h1>
+            <SelectRating handleUpdateRating={handleUpdateRating} />
           </div>
         )}
         <Comments postId={post._id} commentsRef={commentsRef} postComments={post.comments} />

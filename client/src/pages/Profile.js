@@ -6,11 +6,18 @@ import {
   fetchUserProfileDetails,
   clearProfileStatus,
   resetUserPassword,
+  updateProfileBio,
 } from "../store/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
-import { DisplaySocialLinks, InformationCard, RecentActivities } from "../components/Profile/";
+import {
+  DisplaySocialLinks,
+  InformationCard,
+  RecentActivities,
+  ResetPassword,
+  UpdateBio,
+} from "../components/Profile/";
 import { setSocialLinks } from "../store/actions/profileActions";
-import ResetPassword from "../components/ResetPassword";
+
 // Maybe add another section at the bottom for managing your BLogs
 
 const Profile = () => {
@@ -34,6 +41,10 @@ const Profile = () => {
 
   const handlePasswordReset = (passwords) => {
     dispatch(resetUserPassword(passwords));
+  };
+
+  const handleUpdateBio = (newBio) => {
+    dispatch(updateProfileBio(newBio));
   };
 
   useEffect(() => {
@@ -77,6 +88,10 @@ const Profile = () => {
                 Reset your password
               </h3>
               <ResetPassword handlePasswordReset={handlePasswordReset} />
+              <h3 className="text-xl font-semibold mb-4 mt-8 dark:text-[#F7F7F7]">
+                Update your profile bio
+              </h3>
+              <UpdateBio handleUpdateBio={handleUpdateBio} currentBio={user?.shortBio} />
             </>
           )}
         </div>

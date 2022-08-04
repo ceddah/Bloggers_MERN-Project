@@ -50,6 +50,31 @@ const postSchema = new mongoose.Schema(
         message: "You must select a valid category.",
       },
     },
+    reports: {
+      count: {
+        type: Number,
+        default: 0,
+      },
+      reportedFor: [{ type: String }],
+      allReports: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Report",
+        },
+      ],
+    },
+    rating: {
+      votes: {
+        type: Number,
+        default: 0,
+      },
+      ratings: [
+        {
+          type: Number,
+        },
+      ],
+      votedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    },
   },
   { timestamps: true }
 );
