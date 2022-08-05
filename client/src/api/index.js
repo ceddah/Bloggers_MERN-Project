@@ -178,3 +178,16 @@ export const getSubmitReting = async (postId, rating) => {
     credentials: "include",
   });
 };
+
+export const postReportBlog = async (postId, reportType) => {
+  return await fetch(`${SERVER_URL}/api/posts/detail/${postId}/report-post`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      reportType,
+    }),
+  });
+};

@@ -115,7 +115,7 @@ const Modal = ({ handleClose }) => {
         </div>
       </form>
     </div>,
-    document.getElementById("modal")
+    document.getElementById("create-blog-modal")
   );
 };
 export default Modal;

@@ -9,6 +9,14 @@ exports.createNewPost = async (req, res, next) => {
   newPost.author = req.user._id;
   try {
     const user = await User.findById(req.user._id);
+    if (user.isBannedFromPosting) {
+      return next(
+        new ErrorHandler(
+          "Due to negative user feedback, you are temporarily banned from posting",
+          403
+        )
+      );
+    }
     user.lifetimePosts = user.lifetimePosts + 1;
     await user.save();
     const post = new Post(newPost);
@@ -269,10 +277,10 @@ exports.postReportPost = async (req, res, next) => {
 
   try {
     const post = await Post.findById(postId);
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(post.author);
     const newReport = await Report.create({
       post: post._id,
-      submittedBy: user._id,
+      submittedBy: req.user._id,
       reportType,
     });
     post.reports.count += 1;
@@ -280,23 +288,20 @@ exports.postReportPost = async (req, res, next) => {
     post.reports.allReports = [...post.reports.allReports, newReport._id];
     // Automatically removing posts with more then 5 reports
     // else admin can decide whether to remove them
-    let postResult;
     if (post.reports.count >= 5) {
-      postResult = await Post.findByIdAndRemove(post._id);
+      await Post.findByIdAndRemove(post._id);
     } else {
-      postResult = await post.save();
+      await post.save();
     }
+    // if user has more then 9 reported posts, he will be banned from posting
     user.reportedPosts.count += 1;
     user.reportedPosts.reports = [...user.reportedPosts.reports, newReport._id];
     if (user.reportedPosts.count >= 10) {
       user.isBannedFromPosting = true;
     }
-    const userResult = await user.save();
+    await user.save();
     return res.status(201).json({
       success: true,
-      postResult,
-      userResult,
-      newReport,
     });
   } catch (error) {
     next(error);

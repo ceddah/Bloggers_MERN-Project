@@ -43,7 +43,7 @@ const Home = () => {
       </div>
       <div className="lg:w-2/4 md:h-[620px] h-full w-full rounded mt-10">
         {latestPosts.length > 0 && (
-          <Carousel>
+          <Carousel showThumbs={false}>
             {latestPosts.map((post) => (
               <BlogCard key={post._id} post={post} />
             ))}

@@ -7,6 +7,8 @@ import {
   POST_CREATE_FAILURE,
   FETCH_BOOKMARK_SUCCESS,
   FETCH_BOOKMARK_FAILURE,
+  POST_REPORT_BLOG_SUCCESS,
+  POST_REPORT_BLOG_FAILURE,
 } from "../../constants/postsConstants";
 
 const initialState = {
@@ -50,10 +52,16 @@ export const postsReducer = (state = initialState, action) => {
         success: true,
       };
     case POST_CREATE_FAILURE:
+    case POST_REPORT_BLOG_FAILURE:
       return {
         ...state,
         success: false,
         error: action.payload,
+      };
+    case POST_REPORT_BLOG_SUCCESS:
+      return {
+        ...state,
+        success: true,
       };
     case FETCH_BOOKMARK_SUCCESS:
       return {

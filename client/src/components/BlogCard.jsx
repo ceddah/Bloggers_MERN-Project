@@ -1,22 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryTag from "./CategoryTag";
 import Avatar from "./Avatar";
 import Ratings from "./Ratings";
 import { useSelector, useDispatch } from "react-redux";
-import { toast } from "react-toastify";
 import { categoryColors } from "../constants/categoryColors";
-import { BsFillBookmarkCheckFill, BsFillBookmarkDashFill } from "react-icons/bs";
+import {
+  BsFillBookmarkCheckFill,
+  BsFillBookmarkDashFill,
+  BsThreeDotsVertical,
+} from "react-icons/bs";
 import { bookmarkPost, clearBookmarkStatus } from "../store/actions/authActions";
+import { useModalContext } from "../context/modalContext.js";
 
 const BlogCard = ({ post }) => {
+  const [contextMenu, setContextMenu] = useState(false);
   const dispatch = useDispatch();
+  const { setReportModal } = useModalContext();
   const { user, bookmarkSuccess, bookmarkError } = useSelector((state) => state.auth);
   const { thumbnail, title, content, category, createdAt, author, rating } = post;
   const color = categoryColors.find((color) => color.name === category).color;
   const didUserBookmarkThisPost = user && user.bookmarks.includes(post?._id);
 
   const handleBookmark = () => dispatch(bookmarkPost(post?._id));
+  const handleOpenReportModal = () => {
+    setReportModal({
+      isOpen: true,
+      postId: post?._id,
+      title: title,
+    });
+    setContextMenu(false);
+  };
 
   useEffect(() => {
     if (bookmarkSuccess) {
@@ -39,7 +53,7 @@ const BlogCard = ({ post }) => {
         src={thumbnail}
         alt="thumbnail"
       />
-      <div className="flex flex-col items-start px-10 pt-3">
+      <div className="flex flex-col items-start px-10 pt-3 relative">
         <CategoryTag color={color} category={category} />
         <Ratings rating={rating} />
         <Link to={`/blog-read/${post?._id}`}>
@@ -57,6 +71,46 @@ const BlogCard = ({ post }) => {
           createdAt={createdAt}
           userId={author?._id}
         />
+        {user?._id && (
+          <div className="absolute top-5 right-8">
+            {contextMenu && (
+              <div className="w-36 flex flex-col absolute top-8 right-2 border-[1px] border-gray-300 bg-[#fafafa]">
+                <Link
+                  to={`/blog-read/${post?._id}`}
+                  className="py-2 px-5 hover:bg-[#eee]"
+                  type="button"
+                >
+                  Visit Blog
+                </Link>
+                <Link
+                  to={`/profile/${author?._id}`}
+                  className="py-2 px-5 hover:bg-[#eee]"
+                  type="button"
+                >
+                  Check Author
+                </Link>
+                <button
+                  onClick={handleOpenReportModal}
+                  className="py-2 px-5 hover:bg-red-600 hover:text-white"
+                  type="button"
+                >
+                  Report Blog
+                </button>
+                <button
+                  onClick={() => setContextMenu(false)}
+                  className="py-1 hover:bg-[#eee]"
+                  type="button"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+            <BsThreeDotsVertical
+              onClick={() => setContextMenu((prev) => !prev)}
+              className="cursor-pointer text-2xl"
+            />
+          </div>
+        )}
       </div>
       {user?._id && (
         <div className="group-hover:block hidden absolute top-5 right-5">

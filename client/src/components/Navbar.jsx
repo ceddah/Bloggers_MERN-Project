@@ -3,6 +3,7 @@ import Logo from "../assets/Logo.png";
 import MobileNavbar from "./MobileNavbar";
 import NavItems from "./NavItems";
 import AuthButton from "./AuthButton";
+import PublishButton from "./PublishButton";
 import { TbBulb } from "react-icons/tb";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +20,6 @@ const Navbar = () => {
   const { setIsModalOpen } = useModalContext();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleAuth = (action) => {
     if (action === "Sign Up") {
       navigate(ROUTES.AUTH);
@@ -37,7 +37,7 @@ const Navbar = () => {
       <Link to={ROUTES.HOME}>
         <img src={Logo} alt="logo" className="md:h-[49px] h-[35px]" />
       </Link>
-      <div className="md:flex hidden align-center">
+      <div className="lg:flex hidden align-center">
         <div className="mr-10 flex align-center">
           <button
             type="button"
@@ -51,18 +51,10 @@ const Navbar = () => {
         <ul className="flex items-center">
           <NavItems userId={user?._id} isAuthenticated={isAuthenticated} />
         </ul>
-        {isAuthenticated && (
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="md:ml-10 border-2 bg-white dark:text-[#20232A] flex items-center border-blue-700 transition-all md:text-sm text-xl cursor-pointer rounded-lg px-10 md:px-5 py-3 md:py-0 dark:hover:bg-[#ebebed] hover:bg-[#2D5CD0] font-medium hover:text-white"
-          >
-            <AiOutlinePlus className="text-lg xl:text-xl" />
-            <span className="xl:block hidden ml-1">Publish</span>
-          </button>
-        )}
+        {isAuthenticated && <PublishButton handleClick={() => setIsModalOpen(true)} />}
         <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />
       </div>
-      <button onClick={() => setToggleMobileNav(true)} className="md:hidden block text-2xl">
+      <button onClick={() => setToggleMobileNav(true)} className="lg:hidden block text-2xl">
         <AiOutlineMenu />
       </button>
       {toggleMobileNav && (
@@ -71,6 +63,7 @@ const Navbar = () => {
           userId={user?._id}
           isAuthenticated={isAuthenticated}
           handleAuth={handleAuth}
+          handlePublishButtonClick={() => setIsModalOpen(true)}
         />
       )}
     </div>

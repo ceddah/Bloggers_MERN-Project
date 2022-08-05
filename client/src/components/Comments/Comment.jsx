@@ -52,11 +52,14 @@ const Comment = ({
         </div>
         <div className="flex-1">
           <div className="flex flex-col">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <Link to={`/profile/${comment.author._id}`}>
                 <p className="font-semibold dark:text-gray-600">{comment.author.fullName}</p>
               </Link>
               <span className="text-gray-400 dark:text-gray-500">{date}</span>
+              {comment.updatedAt !== comment.createdAt && (
+                <p className="text-green-600 font-semibold text-sm">Edited</p>
+              )}
             </div>
             <div className="mt-5 dark:text-gray-600">{comment.text}</div>
           </div>
