@@ -4,13 +4,13 @@ const ModalContext = createContext();
 
 export const ModalContextProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reportModal, setReportModal] = useState({
+  const [confirmModal, setConfirmModal] = useState({
     isOpen: false,
     postId: null,
     title: "",
   });
   return (
-    <ModalContext.Provider value={{ isModalOpen, setIsModalOpen, reportModal, setReportModal }}>
+    <ModalContext.Provider value={{ isModalOpen, setIsModalOpen, confirmModal, setConfirmModal }}>
       {children}
     </ModalContext.Provider>
   );

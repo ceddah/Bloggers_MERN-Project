@@ -24,19 +24,27 @@ const Detail = lazy(() => import("./pages/Detail"));
 const Profile = lazy(() => import("./pages/Profile"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+//Admin routes/pages
+const Admin = lazy(() => import("./pages/Admin/Admin"));
+const Welcome = lazy(() => import("./pages/Admin/Welcome"));
+const Users = lazy(() => import("./pages/Admin/Users"));
+const Blogs = lazy(() => import("./pages/Admin/Blogs"));
+const Reports = lazy(() => import("./pages/Admin/Reports"));
+
 // suspence loader
+// add bio and social links to user seeder when everything is done
 
 const App = () => {
-  const { isModalOpen, setIsModalOpen, reportModal, setReportModal } = useModalContext();
+  const { isModalOpen, setIsModalOpen, confirmModal, setConfirmModal } = useModalContext();
   const [selectedReportType, setSelectedReportType] = useState(reportTypes[0]);
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const { isDarkMode } = useDarkModeContext();
 
   const handleReportBlog = () => {
-    const { postId } = reportModal;
+    const { postId } = confirmModal;
     dispatch(reportBlog(postId, selectedReportType));
-    setReportModal({
+    setConfirmModal({
       isOpen: false,
       postId: null,
       title: "",
@@ -53,7 +61,7 @@ const App = () => {
   return (
     <Suspense
       fallback={
-        <div className="w-full h-[100vh] flex items-center justify-center">
+        <div className="w-full h-[100vh] dark:bg-black-200 flex items-center justify-center">
           <Spinner size={100} color="#2D5CD0" />
         </div>
       }
@@ -84,23 +92,28 @@ const App = () => {
               <Route path={ROUTES.PROFILE} element={<Profile />} />
               <Route path={ROUTES.DETAIL} element={<Detail />} />
               <Route
-                path="/admin-only"
+                path={ROUTES.ADMIN}
                 element={
                   <ProtectedRoute user={user} redirectPath={ROUTES.HOME} condition="requireAdmin">
-                    <p>Admin only page</p>
+                    <Admin />
                   </ProtectedRoute>
                 }
-              />
+              >
+                <Route path={ROUTES.ADMIN_WELCOME} element={<Welcome />} />
+                <Route path={ROUTES.ADMIN_USERS} element={<Users />} />
+                <Route path={ROUTES.ADMIN_REPORTS} element={<Reports />} />
+                <Route path={ROUTES.ADMIN_BLOGS} element={<Blogs />} />
+              </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Router>
           {isModalOpen && <Modal handleClose={() => setIsModalOpen(false)} />}
-          {reportModal.isOpen && (
+          {confirmModal.isOpen && (
             <ConfirmModal
-              handleClose={() => setReportModal({ isOpen: false, postId: null, title: "" })}
+              handleClose={() => setConfirmModal({ isOpen: false, postId: null, title: "" })}
               onConfirm={handleReportBlog}
               actionText={`Are you sure you want to report: `}
-              titleText={reportModal.title}
+              titleText={confirmModal.title}
               confirmText="Confirm"
               cancelText="Cancel"
             >

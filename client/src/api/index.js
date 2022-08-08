@@ -191,3 +191,39 @@ export const postReportBlog = async (postId, reportType) => {
     }),
   });
 };
+
+// admin
+
+export const getAllUsers = async (currentPage, search) => {
+  return await fetch(
+    `${SERVER_URL}/api/manage/get-all-users?page=${currentPage}&search=${search}`,
+    {
+      method: "GET",
+      credentials: "include",
+    }
+  );
+};
+
+export const getAllBlogs = async (currentPage, search) => {
+  return await fetch(
+    `${SERVER_URL}/api/manage/get-all-blogs?page=${currentPage}&search=${search}`,
+    {
+      method: "GET",
+      credentials: "include",
+    }
+  );
+};
+
+export const getBanUnbanUser = async (userId) => {
+  return await fetch(`${SERVER_URL}/api/manage/ban-unban?userId=${userId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+export const getPromoteUser = async (userId) => {
+  return await fetch(`${SERVER_URL}/api/manage/promote-user?userId=${userId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};

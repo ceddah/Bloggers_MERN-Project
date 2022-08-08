@@ -16,15 +16,15 @@ import { useModalContext } from "../context/modalContext.js";
 const BlogCard = ({ post }) => {
   const [contextMenu, setContextMenu] = useState(false);
   const dispatch = useDispatch();
-  const { setReportModal } = useModalContext();
+  const { setConfirmModal } = useModalContext();
   const { user, bookmarkSuccess, bookmarkError } = useSelector((state) => state.auth);
   const { thumbnail, title, content, category, createdAt, author, rating } = post;
   const color = categoryColors.find((color) => color.name === category).color;
   const didUserBookmarkThisPost = user && user.bookmarks.includes(post?._id);
 
   const handleBookmark = () => dispatch(bookmarkPost(post?._id));
-  const handleOpenReportModal = () => {
-    setReportModal({
+  const handleOpenConfirmModal = () => {
+    setConfirmModal({
       isOpen: true,
       postId: post?._id,
       title: title,
@@ -90,7 +90,7 @@ const BlogCard = ({ post }) => {
                   Check Author
                 </Link>
                 <button
-                  onClick={handleOpenReportModal}
+                  onClick={handleOpenConfirmModal}
                   className="py-2 px-5 hover:bg-red-600 hover:text-white"
                   type="button"
                 >
