@@ -18,7 +18,7 @@ const MobileNavbar = ({
       </button>
       <ul className="flex flex-col items-center justify-center h-full">
         <NavItems isAuthenticated={isAuthenticated} userId={userId} />
-        <PublishButton handleClick={handlePublishButtonClick} />
+        {isAuthenticated && <PublishButton handleClick={handlePublishButtonClick} />}
         <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />
       </ul>
     </div>

@@ -51,10 +51,6 @@ const postSchema = new mongoose.Schema(
       },
     },
     reports: {
-      count: {
-        type: Number,
-        default: 0,
-      },
       reportedFor: [{ type: String }],
       allReports: [
         {
@@ -64,10 +60,6 @@ const postSchema = new mongoose.Schema(
       ],
     },
     rating: {
-      votes: {
-        type: Number,
-        default: 0,
-      },
       ratings: [
         {
           type: Number,

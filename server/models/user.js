@@ -51,21 +51,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     minLength: [6, "Your bio must be at least 15 characters long"],
   },
-  reportedPosts: {
-    count: {
-      type: Number,
-      default: 0,
+  reportedPosts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Report",
     },
-    reports: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Report",
-      },
-    ],
-  },
-  isBannedFromPosting: {
-    type: Boolean,
-    default: false,
+  ],
+  banned: {
+    status: {
+      type: Boolean,
+      default: false,
+    },
+    expiryDate: {
+      type: Date,
+    },
   },
   socials: {
     facebook: {

@@ -8,9 +8,6 @@ import CategoryTag from "../components/CategoryTag";
 import Pagination from "../components/Pagination";
 import { categoryColors } from "../constants/categoryColors";
 import PostsContainer from "../components/PostsContainer";
-import MetaData from "../components/MetaData";
-
-// maybe use skeleton while loading posts -- add ALL_POSTS_LOADING action which will change loading variable in store
 
 const Browse = () => {
   const [searchTerm, setSearchTerm] = useState("");

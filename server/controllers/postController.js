@@ -259,7 +259,6 @@ exports.setPostRatings = async (req, res, next) => {
     if (post.rating.votedUsers.includes(req.user._id)) {
       return next(new ErrorHandler("You have already submitted your vote.", 400));
     }
-    post.rating.votes += 1;
     post.rating.ratings = [...post.rating.ratings, ratingNum];
     post.rating.votedUsers = [...post.rating.votedUsers, req.user._id];
     await post.save();
@@ -283,21 +282,20 @@ exports.postReportPost = async (req, res, next) => {
       submittedBy: req.user._id,
       reportType,
     });
-    post.reports.count += 1;
     post.reports.reportedFor = [...post.reports.reportedFor, reportType];
     post.reports.allReports = [...post.reports.allReports, newReport._id];
     // Automatically removing posts with more then 5 reports
     // else admin can decide whether to remove them
-    if (post.reports.count >= 5) {
+    if (post.reports.allReports.length >= 5) {
       await Post.findByIdAndRemove(post._id);
     } else {
       await post.save();
     }
     // if user has more then 9 reported posts, he will be banned from posting
-    user.reportedPosts.count += 1;
-    user.reportedPosts.reports = [...user.reportedPosts.reports, newReport._id];
-    if (user.reportedPosts.count >= 10) {
-      user.isBannedFromPosting = true;
+    user.reportedPosts = [...user.reportedPosts, newReport._id];
+    if (user.reportedPosts.length >= 10) {
+      user.banned.status = true;
+      user.banned.expiryDate = new Date() + 2 * 24 * 60 * 60 * 1000;
     }
     await user.save();
     return res.status(201).json({

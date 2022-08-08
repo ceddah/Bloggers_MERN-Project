@@ -112,14 +112,15 @@ const Detail = () => {
             </Carousel>
           </div>
         )}
-        {!alreadyGaveRating && (
-          <div className="w-full my-10 flex flex-col justify-center items-center">
-            <h1 className="font-semibold dark:text-gray-300 text-lg mb-3">
-              How did you like this blog?
-            </h1>
-            <SelectRating handleUpdateRating={handleUpdateRating} />
-          </div>
-        )}
+        {!alreadyGaveRating &&
+          user?._id(
+            <div className="w-full my-10 flex flex-col justify-center items-center">
+              <h1 className="font-semibold dark:text-gray-300 text-lg mb-3">
+                How did you like this blog?
+              </h1>
+              <SelectRating handleUpdateRating={handleUpdateRating} />
+            </div>
+          )}
         <Comments postId={post._id} commentsRef={commentsRef} postComments={post.comments} />
       </div>
     </>

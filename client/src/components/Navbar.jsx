@@ -11,7 +11,7 @@ import { signOutAction } from "../store/actions/authActions";
 import * as ROUTES from "../constants/routes";
 import { Link } from "react-router-dom";
 import { useDarkModeContext, useModalContext } from "../context";
-import { AiOutlineMenu, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
   const [toggleMobileNav, setToggleMobileNav] = useState(false);
