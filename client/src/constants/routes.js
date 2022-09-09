@@ -12,3 +12,4 @@ export const ADMIN_WELCOME = "";
 export const ADMIN_USERS = "users";
 export const ADMIN_BLOGS = "blogs";
 export const ADMIN_REPORTS = "reports";
+export const ADMIN_REPORT_DETAIL = "reports/detail/:id";

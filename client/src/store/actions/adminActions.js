@@ -4,10 +4,16 @@ import {
   ADMIN_FETCH_USERS_FAILURE,
   ADMIN_FETCH_POSTS_SUCCESS,
   ADMIN_FETCH_POSTS_FAILURE,
+  ADMIN_FETCH_REPORTS_SUCCESS,
+  ADMIN_FETCH_REPORTS_FAILURE,
   ADMIN_BANUNBAN_SUCCESS,
   ADMIN_BANUNBAN_FAILURE,
   ADMIN_PROMOTE_USER_SUCCESS,
   ADMIN_PROMOTE_USER_FAILURE,
+  ADMIN_REMOVE_POST_SUCCESS,
+  ADMIN_REMOVE_POST_FAILUIRE,
+  ADMIN_SET_TRENDING_SUCCESS,
+  ADMIN_SET_TRENDING_FAILUIRE,
   ADMIN_STATE_RESET,
 } from "../../constants/adminConstats";
 
@@ -101,8 +107,84 @@ const promoteUser = (userId) => async (dispatch) => {
   }
 };
 
+const removePostAdmin = (postId) => async (dispatch) => {
+  try {
+    const response = await api.deleteRemovePost(postId);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: ADMIN_REMOVE_POST_SUCCESS,
+      });
+    } else {
+      dispatch({
+        type: ADMIN_REMOVE_POST_FAILUIRE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_REMOVE_POST_FAILUIRE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
+const setPostTrending = (postId) => async (dispatch) => {
+  try {
+    const response = await api.getSetTrending(postId);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: ADMIN_SET_TRENDING_SUCCESS,
+      });
+    } else {
+      dispatch({
+        type: ADMIN_SET_TRENDING_FAILUIRE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_SET_TRENDING_FAILUIRE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
+const fetchAllReports = () => async (dispatch) => {
+  try {
+    const response = await api.getAllReports();
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: ADMIN_FETCH_REPORTS_SUCCESS,
+        payload: data,
+      });
+    } else {
+      dispatch({
+        type: ADMIN_FETCH_REPORTS_FAILURE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_FETCH_REPORTS_FAILURE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
 const clearAdminState = () => async (dispatch) => {
   dispatch({ type: ADMIN_STATE_RESET });
 };
 
-export { fetchAllUsers, fetchAllBlogs, clearAdminState, banUnbanUser, promoteUser };
+export {
+  fetchAllUsers,
+  fetchAllBlogs,
+  clearAdminState,
+  banUnbanUser,
+  promoteUser,
+  removePostAdmin,
+  setPostTrending,
+  fetchAllReports,
+};

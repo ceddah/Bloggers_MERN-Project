@@ -58,6 +58,7 @@ export const authReducer = (state = initialState, action) => {
         bookmarkError: null,
       };
     case AUTH_ERROR:
+      localStorage.removeItem("user");
       return {
         ...state,
         error: action.payload,

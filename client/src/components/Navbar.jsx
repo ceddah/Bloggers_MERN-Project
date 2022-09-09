@@ -61,6 +61,7 @@ const Navbar = () => {
         <MobileNavbar
           setToggleMobileNav={setToggleMobileNav}
           userId={user?._id}
+          role={user?.role}
           isAuthenticated={isAuthenticated}
           handleAuth={handleAuth}
           handlePublishButtonClick={() => setIsModalOpen(true)}

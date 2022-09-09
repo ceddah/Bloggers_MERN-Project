@@ -30,9 +30,10 @@ const Welcome = lazy(() => import("./pages/Admin/Welcome"));
 const Users = lazy(() => import("./pages/Admin/Users"));
 const Blogs = lazy(() => import("./pages/Admin/Blogs"));
 const Reports = lazy(() => import("./pages/Admin/Reports"));
+const ReportDetail = lazy(() => import("./pages/Admin/ReportDetail"));
 
-// suspence loader
 // add bio and social links to user seeder when everything is done
+// admin reports
 
 const App = () => {
   const { isModalOpen, setIsModalOpen, confirmModal, setConfirmModal } = useModalContext();
@@ -102,6 +103,7 @@ const App = () => {
                 <Route path={ROUTES.ADMIN_WELCOME} element={<Welcome />} />
                 <Route path={ROUTES.ADMIN_USERS} element={<Users />} />
                 <Route path={ROUTES.ADMIN_REPORTS} element={<Reports />} />
+                <Route path={ROUTES.ADMIN_REPORT_DETAIL} element={<ReportDetail />} />
                 <Route path={ROUTES.ADMIN_BLOGS} element={<Blogs />} />
               </Route>
               <Route path="*" element={<NotFound />} />

@@ -214,6 +214,13 @@ export const getAllBlogs = async (currentPage, search) => {
   );
 };
 
+export const getAllReports = async () => {
+  return await fetch(`${SERVER_URL}/api/manage/get-all-reports`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
 export const getBanUnbanUser = async (userId) => {
   return await fetch(`${SERVER_URL}/api/manage/ban-unban?userId=${userId}`, {
     method: "GET",
@@ -223,6 +230,27 @@ export const getBanUnbanUser = async (userId) => {
 
 export const getPromoteUser = async (userId) => {
   return await fetch(`${SERVER_URL}/api/manage/promote-user?userId=${userId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+export const deleteRemovePost = async (postId) => {
+  return await fetch(`${SERVER_URL}/api/manage/remove-post?postId=${postId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+};
+
+export const getSetTrending = async (postId) => {
+  return await fetch(`${SERVER_URL}/api/manage/set-trending?postId=${postId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+export const getReportDetail = async (reportId) => {
+  return await fetch(`${SERVER_URL}/api/manage/get-report-detail?reportId=${reportId}`, {
     method: "GET",
     credentials: "include",
   });

@@ -3,10 +3,16 @@ import {
   ADMIN_FETCH_USERS_FAILURE,
   ADMIN_FETCH_POSTS_SUCCESS,
   ADMIN_FETCH_POSTS_FAILURE,
+  ADMIN_FETCH_REPORTS_SUCCESS,
+  ADMIN_FETCH_REPORTS_FAILURE,
   ADMIN_BANUNBAN_SUCCESS,
   ADMIN_BANUNBAN_FAILURE,
   ADMIN_PROMOTE_USER_SUCCESS,
   ADMIN_PROMOTE_USER_FAILURE,
+  ADMIN_REMOVE_POST_SUCCESS,
+  ADMIN_REMOVE_POST_FAILUIRE,
+  ADMIN_SET_TRENDING_SUCCESS,
+  ADMIN_SET_TRENDING_FAILUIRE,
   ADMIN_STATE_RESET,
 } from "../../constants/adminConstats";
 
@@ -45,6 +51,14 @@ export const adminReducer = (state = initialState, action) => {
           totalItems: action.payload.totalPosts,
         },
       };
+    case ADMIN_FETCH_REPORTS_SUCCESS:
+      return {
+        ...state,
+        reports: {
+          allReports: action.payload.reports,
+          totalItems: action.payload.reports.length,
+        },
+      };
     case ADMIN_BANUNBAN_SUCCESS:
       return {
         ...state,
@@ -55,10 +69,23 @@ export const adminReducer = (state = initialState, action) => {
         ...state,
         success: true,
       };
+    case ADMIN_REMOVE_POST_SUCCESS:
+      return {
+        ...state,
+        success: true,
+      };
+    case ADMIN_SET_TRENDING_SUCCESS:
+      return {
+        ...state,
+        success: true,
+      };
     case ADMIN_FETCH_USERS_FAILURE:
     case ADMIN_FETCH_POSTS_FAILURE:
+    case ADMIN_FETCH_REPORTS_FAILURE:
     case ADMIN_BANUNBAN_FAILURE:
     case ADMIN_PROMOTE_USER_FAILURE:
+    case ADMIN_REMOVE_POST_FAILUIRE:
+    case ADMIN_SET_TRENDING_FAILUIRE:
       return {
         ...state,
         success: false,

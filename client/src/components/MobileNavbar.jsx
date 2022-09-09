@@ -7,6 +7,7 @@ import PublishButton from "./PublishButton";
 const MobileNavbar = ({
   setToggleMobileNav,
   isAuthenticated,
+  role,
   userId,
   handleAuth,
   handlePublishButtonClick,
@@ -17,7 +18,7 @@ const MobileNavbar = ({
         <AiOutlineClose />
       </button>
       <ul className="flex flex-col items-center justify-center h-full">
-        <NavItems isAuthenticated={isAuthenticated} userId={userId} />
+        <NavItems isAuthenticated={isAuthenticated} userId={userId} role={role} />
         {isAuthenticated && <PublishButton handleClick={handlePublishButtonClick} />}
         <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />
       </ul>

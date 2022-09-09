@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const { user } = useSelector((state) => state.auth);
+
+  if (!user) {
+    return <p>Error occurred... You arer not logged in... </p>;
+  }
+
   return (
     <div className="w-full h-full flex flex-col items-center gap-5">
       <img className="h-48 w-48 rounded-full shadow-md" src={user.image} alt="avatar" />

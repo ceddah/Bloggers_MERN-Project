@@ -30,6 +30,10 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    isTrending: {
+      type: Boolean,
+      default: false,
+    },
     category: {
       type: String,
       required: [true, "You must select a category for your Post"],

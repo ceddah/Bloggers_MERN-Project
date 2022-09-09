@@ -5,9 +5,13 @@ import Pagination from "../../components/Pagination";
 import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/Admin/DataTable";
 import { toast } from "react-toastify";
-import { fetchAllUsers } from "../../store/actions/adminActions";
 import { Link } from "react-router-dom";
-import { banUnbanUser, promoteUser, clearAdminState } from "../../store/actions/adminActions";
+import {
+  fetchAllUsers,
+  banUnbanUser,
+  promoteUser,
+  clearAdminState,
+} from "../../store/actions/adminActions";
 
 const Users = () => {
   const [query, setQuery] = useState("");
@@ -76,7 +80,7 @@ const Users = () => {
           isSearching
         />
       </div>
-      <DataTable dataHead={dataHead} dataBody={dataBody} actions={renderDataTableActions} />
+      <DataTable dataHead={dataHead} dataBody={dataBody} />
       {Math.ceil(totalItems / 5) > 1 && (
         <Pagination
           pageCount={Math.ceil(totalItems / 5)}
