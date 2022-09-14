@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCurrentUser } from "./store/actions/authActions";
 import { reportBlog } from "./store/actions/postsActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useDarkModeContext, useModalContext } from "./context";
 import { reportTypes } from "./constants/reportTypes";
 import Modal from "./components/Modal";
@@ -14,6 +14,8 @@ import Spinner from "./components/Spinner";
 
 // protected routes
 import ProtectedRoute from "./util/protected-routes";
+import ForbiddenRoute from "./util/forbidden-routes";
+import AdminRoute from "./util/admin-routes";
 
 //Pages
 const Home = lazy(() => import("./pages/Home"));
@@ -33,13 +35,13 @@ const Reports = lazy(() => import("./pages/Admin/Reports"));
 const ReportDetail = lazy(() => import("./pages/Admin/ReportDetail"));
 
 // add bio and social links to user seeder when everything is done
-// admin reports
 
 const App = () => {
   const { isModalOpen, setIsModalOpen, confirmModal, setConfirmModal } = useModalContext();
   const [selectedReportType, setSelectedReportType] = useState(reportTypes[0]);
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { user } = useSelector((state) => state.auth);
+  // const user = JSON.parse(localStorage.getItem("user"));
   const { isDarkMode } = useDarkModeContext();
 
   const handleReportBlog = () => {
@@ -52,7 +54,6 @@ const App = () => {
     });
     setSelectedReportType(reportTypes[0]);
   };
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
@@ -77,7 +78,7 @@ const App = () => {
               <Route
                 path={ROUTES.BOOKMARKS}
                 element={
-                  <ProtectedRoute user={user} redirectPath={ROUTES.AUTH} condition="requireAuth">
+                  <ProtectedRoute user={user} redirectPath={ROUTES.AUTH}>
                     <Bookmarks />
                   </ProtectedRoute>
                 }
@@ -85,9 +86,9 @@ const App = () => {
               <Route
                 path={ROUTES.AUTH}
                 element={
-                  <ProtectedRoute user={user} redirectPath={ROUTES.HOME} condition="forbidden">
+                  <ForbiddenRoute user={user} redirectPath={ROUTES.HOME}>
                     <Auth />
-                  </ProtectedRoute>
+                  </ForbiddenRoute>
                 }
               />
               <Route path={ROUTES.PROFILE} element={<Profile />} />
@@ -95,9 +96,9 @@ const App = () => {
               <Route
                 path={ROUTES.ADMIN}
                 element={
-                  <ProtectedRoute user={user} redirectPath={ROUTES.HOME} condition="requireAdmin">
+                  <AdminRoute user={user} redirectPath={ROUTES.HOME}>
                     <Admin />
-                  </ProtectedRoute>
+                  </AdminRoute>
                 }
               >
                 <Route path={ROUTES.ADMIN_WELCOME} element={<Welcome />} />

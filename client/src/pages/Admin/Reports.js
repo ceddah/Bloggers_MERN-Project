@@ -8,7 +8,7 @@ const Reports = () => {
   const [criteria, setCriteria] = useState("all");
   const dispatch = useDispatch();
   const {
-    reports: { allReports, totalItems },
+    reports: { allReports },
     success,
   } = useSelector((state) => state.admin);
 
@@ -58,14 +58,17 @@ const Reports = () => {
   const handleChange = ({ target: { value } }) => setCriteria(value);
 
   useEffect(() => {
+    if (success) {
+      dispatch(fetchAllReports());
+    }
     dispatch(fetchAllReports());
-  }, [dispatch]);
+  }, [dispatch, success]);
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl mt-12">Reports</h1>
+      <h1 className="text-2xl mt-12 dark:text-[#F7F7F7]">Reports</h1>
       <div className="w-full mt-10 flex items-center gap-3">
-        Sort by:
+        <span className="dark:text-gray-300">Sort by:</span>
         <select
           name="category"
           value={criteria}

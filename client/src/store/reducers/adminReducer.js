@@ -13,6 +13,10 @@ import {
   ADMIN_REMOVE_POST_FAILUIRE,
   ADMIN_SET_TRENDING_SUCCESS,
   ADMIN_SET_TRENDING_FAILUIRE,
+  ADMIN_FETCH_REPORT_DETAILS_SUCCESS,
+  ADMIN_FETCH_REPORT_DETAILS_FAILUIRE,
+  ADMIN_CLOSE_REPORT_SUCCESS,
+  ADMIN_CLOSE_REPORT_FAILUIRE,
   ADMIN_STATE_RESET,
 } from "../../constants/adminConstats";
 
@@ -29,6 +33,7 @@ const initialState = {
     allReports: [],
     totalItems: 0,
   },
+  reportDetails: null,
   success: false,
   error: null,
 };
@@ -59,6 +64,16 @@ export const adminReducer = (state = initialState, action) => {
           totalItems: action.payload.reports.length,
         },
       };
+    case ADMIN_FETCH_REPORT_DETAILS_SUCCESS:
+      return {
+        ...state,
+        reportDetails: action.payload.report,
+      };
+    case ADMIN_CLOSE_REPORT_SUCCESS:
+      return {
+        ...state,
+        success: true,
+      };
     case ADMIN_BANUNBAN_SUCCESS:
       return {
         ...state,
@@ -86,6 +101,8 @@ export const adminReducer = (state = initialState, action) => {
     case ADMIN_PROMOTE_USER_FAILURE:
     case ADMIN_REMOVE_POST_FAILUIRE:
     case ADMIN_SET_TRENDING_FAILUIRE:
+    case ADMIN_FETCH_REPORT_DETAILS_FAILUIRE:
+    case ADMIN_CLOSE_REPORT_FAILUIRE:
       return {
         ...state,
         success: false,

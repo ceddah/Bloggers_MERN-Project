@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
 
         <ul className="flex items-center">
-          <NavItems userId={user?._id} isAuthenticated={isAuthenticated} />
+          <NavItems userId={user?._id} isAuthenticated={isAuthenticated} role={user?.role} />
         </ul>
         {isAuthenticated && <PublishButton handleClick={() => setIsModalOpen(true)} />}
         <AuthButton isAuthenticated={isAuthenticated} handleAuth={handleAuth} />

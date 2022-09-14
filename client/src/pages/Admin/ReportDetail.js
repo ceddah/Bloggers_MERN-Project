@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getReportDetail } from "../../api";
 
 import { AiOutlineStar } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { MdReportGmailerrorred } from "react-icons/md";
 
+import { useSelector, useDispatch } from "react-redux";
+import { fetchReportDetails, closeReport } from "../../store/actions/adminActions";
+
 const ReportDetail = () => {
   const { id } = useParams();
-  const [report, setReport] = useState(null);
+  const dispatch = useDispatch();
+  const { reportDetails: report, success } = useSelector((state) => state.admin);
   const totalRating =
     report?.post?.rating.ratings.reduce((acc, item) => (acc += item), 0) /
       report?.post?.rating.ratings.length || 0;
-  console.log(report);
-  useEffect(() => {
-    const fetchReportDetail = async () => {
-      const response = await getReportDetail(id);
-      const data = await response.json();
-      if (data.success) {
-        setReport(data.report);
-      }
-    };
 
-    fetchReportDetail();
-  }, [id]);
+  const handleCLoseReport = () => dispatch(closeReport(id));
+
+  useEffect(() => {
+    dispatch(fetchReportDetails(id));
+  }, [id, dispatch, success]);
 
   if (!report) {
     return (
@@ -34,13 +31,7 @@ const ReportDetail = () => {
   }
   return (
     <div className="flex flex-col items-center pb-5">
-      <h1 className="text-xl mt-12">Report Details</h1>
-      {/* <p className="bg-red-600 p-2 text-white mt-8">
-        By following strict guidelines you will decide whether reported post is breaking those
-        guidelines or not. <br /> If you come to a conclusion that certain post should be removed,
-        you may use your administrative privilege to remove it.
-      </p> */}
-
+      <h1 className="text-xl mt-12 dark:text-[#F7F7F7]">Report Details</h1>
       <div className="w-[95%] md:w-3/4 lg:w-2/4 mx-auto mt-12 border-[1px] border-gray-200 rounded-md p-10 bg-[#fafafa] flex gap-5">
         <div className="flex-4">
           <img src={report.post.thumbnail} alt="blog thumbnail" className="w-[60px] h-[60px]" />
@@ -85,7 +76,10 @@ const ReportDetail = () => {
               <button className="border-[1px] border-red-600 text-red-600 bg-white rounded-sm font-semibold px-4 py-1 cursor-pointer hover:bg-red-600 hover:text-white transition-all">
                 Remove Post
               </button>
-              <button className="border-[1px] border-gray-300 text-gray-500 bg-white rounded-sm font-semibold px-4 py-1 cursor-pointer hover:bg-gray-500 hover:text-white transition-all">
+              <button
+                onClick={handleCLoseReport}
+                className="border-[1px] border-gray-300 text-gray-500 bg-white rounded-sm font-semibold px-4 py-1 cursor-pointer hover:bg-gray-500 hover:text-white transition-all"
+              >
                 Close Report
               </button>
             </div>

@@ -8,6 +8,7 @@ const {
   setTrending,
   removePost,
   getReport,
+  closeReport,
 } = require("../controllers/adminController");
 
 const requireAuth = require("../middlewares/requireAuth");
@@ -23,5 +24,6 @@ router.route("/ban-unban").get(requireAuth, requireAdmin, banUnbanUser);
 router.route("/remove-post").delete(requireAuth, requireAdmin, removePost);
 router.route("/get-report-detail").get(requireAuth, requireAdmin, getReport);
 router.route("/set-trending").get(requireAuth, requireAdmin, setTrending);
+router.route("/close-report").get(requireAuth, requireAdmin, closeReport);
 
 module.exports = router;

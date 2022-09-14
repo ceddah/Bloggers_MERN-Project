@@ -134,11 +134,16 @@ exports.banUnbanUser = async (req, res, next) => {
 };
 
 exports.removePost = async (req, res, next) => {
-  const { postId } = req.query;
+  const { postId, reportId } = req.query;
   try {
     const post = await Post.findById(postId);
     if (!post) {
       return next(new ErrorHandler("Couldn't find the post you are trying to delete.", 400));
+    }
+    if (reportId) {
+      const report = await Report.findById(reportId);
+      report.status = "closed";
+      await report.save();
     }
     await Post.findByIdAndDelete(postId);
     return res.status(200).json({
@@ -191,6 +196,23 @@ exports.getReport = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       report,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+exports.closeReport = async (req, res, next) => {
+  const { reportId } = req.query;
+  try {
+    const report = await Report.findById(reportId);
+    if (!report) {
+      return next(new ErrorHandler("Couldn't find the report you are trying to close.", 400));
+    }
+    report.status = "closed";
+    await report.save();
+    return res.status(200).json({
+      success: true,
     });
   } catch (error) {
     return next(error);

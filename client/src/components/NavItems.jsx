@@ -13,7 +13,7 @@ const NavItems = ({ userId, isAuthenticated, role }) => {
     { name: "Admin Panel", path: `/admin-panel` },
   ].map((item, idx) => {
     if (!isAuthenticated && (item.name === "Profile" || item.name === "Bookmarks")) return null;
-    if (!isAuthenticated && role !== "admin" && item.name === "Admin Panel") return null;
+    if ((!isAuthenticated || role !== "admin") && item.name === "Admin Panel") return null;
     return (
       <NavLink
         to={item.path}

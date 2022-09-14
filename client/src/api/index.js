@@ -255,3 +255,17 @@ export const getReportDetail = async (reportId) => {
     credentials: "include",
   });
 };
+
+export const getCloseReport = async (reportId) => {
+  return await fetch(`${SERVER_URL}/api/manage/close-report?reportId=${reportId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+};
+
+export const deleteRemovePostAndReport = async (postId, reportId) => {
+  return await fetch(`${SERVER_URL}/api/manage/remove-post?postId=${postId}&reportId=${reportId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+};

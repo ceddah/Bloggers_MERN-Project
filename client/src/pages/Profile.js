@@ -94,6 +94,16 @@ const Profile = () => {
               <UpdateBio handleUpdateBio={handleUpdateBio} currentBio={user?.shortBio} />
             </>
           )}
+          {user?.shortBio && !isActiveUserProfile && (
+            <div className="mt-5">
+              <h3 className="text-xl font-semibold mb-4 mt-8 dark:text-[#F7F7F7]">
+                {user?.fullName} bio
+              </h3>
+              <p className="leading-7 tracking-wide text-gray-600 dark:text-gray-300">
+                {user?.shortBio}
+              </p>
+            </div>
+          )}
         </div>
         <div className="flex-1 flex flex-col items-center">
           <h1 className="text-xl font-semibold mb-4 dark:text-[#F7F7F7]">

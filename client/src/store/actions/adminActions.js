@@ -14,6 +14,10 @@ import {
   ADMIN_REMOVE_POST_FAILUIRE,
   ADMIN_SET_TRENDING_SUCCESS,
   ADMIN_SET_TRENDING_FAILUIRE,
+  ADMIN_FETCH_REPORT_DETAILS_SUCCESS,
+  ADMIN_FETCH_REPORT_DETAILS_FAILUIRE,
+  ADMIN_CLOSE_REPORT_SUCCESS,
+  ADMIN_CLOSE_REPORT_FAILUIRE,
   ADMIN_STATE_RESET,
 } from "../../constants/adminConstats";
 
@@ -174,6 +178,52 @@ const fetchAllReports = () => async (dispatch) => {
   }
 };
 
+const fetchReportDetails = (reportId) => async (dispatch) => {
+  try {
+    const response = await api.getReportDetail(reportId);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: ADMIN_FETCH_REPORT_DETAILS_SUCCESS,
+        payload: data,
+      });
+    } else {
+      dispatch({
+        type: ADMIN_FETCH_REPORT_DETAILS_FAILUIRE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_FETCH_REPORT_DETAILS_FAILUIRE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
+const closeReport = (reportId) => async (dispatch) => {
+  try {
+    const response = await api.getCloseReport(reportId);
+    const data = await response.json();
+    if (data.success) {
+      dispatch({
+        type: ADMIN_CLOSE_REPORT_SUCCESS,
+        payload: data,
+      });
+    } else {
+      dispatch({
+        type: ADMIN_CLOSE_REPORT_FAILUIRE,
+        payload: data.message,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_CLOSE_REPORT_FAILUIRE,
+      payload: "Service Error, please try again.",
+    });
+  }
+};
+
 const clearAdminState = () => async (dispatch) => {
   dispatch({ type: ADMIN_STATE_RESET });
 };
@@ -187,4 +237,6 @@ export {
   removePostAdmin,
   setPostTrending,
   fetchAllReports,
+  fetchReportDetails,
+  closeReport,
 };
