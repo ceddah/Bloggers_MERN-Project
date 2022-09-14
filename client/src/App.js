@@ -34,14 +34,12 @@ const Blogs = lazy(() => import("./pages/Admin/Blogs"));
 const Reports = lazy(() => import("./pages/Admin/Reports"));
 const ReportDetail = lazy(() => import("./pages/Admin/ReportDetail"));
 
-// add bio and social links to user seeder when everything is done
-
 const App = () => {
   const { isModalOpen, setIsModalOpen, confirmModal, setConfirmModal } = useModalContext();
   const [selectedReportType, setSelectedReportType] = useState(reportTypes[0]);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  // const user = JSON.parse(localStorage.getItem("user"));
+  const userLS = JSON.parse(localStorage.getItem("user"));
   const { isDarkMode } = useDarkModeContext();
 
   const handleReportBlog = () => {
@@ -78,7 +76,7 @@ const App = () => {
               <Route
                 path={ROUTES.BOOKMARKS}
                 element={
-                  <ProtectedRoute user={user} redirectPath={ROUTES.AUTH}>
+                  <ProtectedRoute user={user || userLS} redirectPath={ROUTES.AUTH}>
                     <Bookmarks />
                   </ProtectedRoute>
                 }
@@ -86,7 +84,7 @@ const App = () => {
               <Route
                 path={ROUTES.AUTH}
                 element={
-                  <ForbiddenRoute user={user} redirectPath={ROUTES.HOME}>
+                  <ForbiddenRoute user={user || userLS} redirectPath={ROUTES.HOME}>
                     <Auth />
                   </ForbiddenRoute>
                 }
@@ -96,7 +94,7 @@ const App = () => {
               <Route
                 path={ROUTES.ADMIN}
                 element={
-                  <AdminRoute user={user} redirectPath={ROUTES.HOME}>
+                  <AdminRoute user={user || userLS} redirectPath={ROUTES.HOME}>
                     <Admin />
                   </AdminRoute>
                 }

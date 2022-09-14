@@ -8,15 +8,17 @@ require("dotenv").config({ path: "server/config/config.env" });
 
 connectDB();
 
-// 62ee33b7123e78b1eae7d5ea
-// 62ee33b7123e78b1eae7d5eb
-// 62ee33b7123e78b1eae7d5ed
-// 62ee33b7123e78b1eae7d5ee
-// 62ee33b7123e78b1eae7d5ef
-// 62ee33b7123e78b1eae7d5f0
-// 62ee33b7123e78b1eae7d5f1
-// 62ee33b7123e78b1eae7d5f2
-// 62ee33e0c32ffe76f1121d1a
+// 6321c75c4f0c88d7c5f333a1
+// 6321c75c4f0c88d7c5f333a2
+// 6321c75c4f0c88d7c5f333a3
+// 6321c75c4f0c88d7c5f333a4
+// 6321c75c4f0c88d7c5f333a5
+// 6321c75c4f0c88d7c5f333a6
+// 6321c75c4f0c88d7c5f333a7
+// 6321c75c4f0c88d7c5f333a8
+// 6321c75c4f0c88d7c5f333a9
+
+// 6321c880ef142e9c4aabcc60
 
 const posts = [
   {
@@ -32,7 +34,7 @@ const posts = [
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Travel",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ea"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
   },
   {
     title: "The likable brand (or person)",
@@ -46,7 +48,7 @@ const posts = [
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
     ],
     category: "Business",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
   },
   {
     title: "How to Find a Good Personal Trainer or Coach: 5 Mistakes to Avoid!",
@@ -60,15 +62,15 @@ const posts = [
       "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Health and fitness",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
     rating: {
       ratings: [1, 5, 5, 4, 3],
       votedUsers: [
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
-        mongoose.Types.ObjectId("62ee33e0c32ffe76f1121d1a"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f0"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f2"),
-        mongoose.Types.ObjectId("62ee33e0c32ffe76f1121d1a"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a6"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a8"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
       ],
     },
   },
@@ -83,7 +85,7 @@ const posts = [
       "https://images.unsplash.com/photo-1510932742089-bef92acabb5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Other",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
   },
   {
     title: "How to Fix the 413 Request Entity Too Large Error",
@@ -97,7 +99,7 @@ const posts = [
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Technology",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ef"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
   },
   {
     title: "Tiktok Cinnamon Rolls",
@@ -111,17 +113,17 @@ const posts = [
       "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1153&q=80",
     ],
     category: "Food",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
     rating: {
       ratings: [4, 5, 3, 4, 4, 5, 4],
       votedUsers: [
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ea"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f0"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f2"),
-        mongoose.Types.ObjectId("62ee33e0c32ffe76f1121d1a"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a6"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a8"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
       ],
     },
   },
@@ -136,7 +138,7 @@ const posts = [
       "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Other",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
+    author: mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
   },
   {
     title: "Life in Motion: A Guide to Animating Mobile Data Visualizations",
@@ -150,7 +152,7 @@ const posts = [
       "https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Art and Design",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ef"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
   },
   {
     title: "Day 9: Loen Skylift and Mt Hoven",
@@ -164,16 +166,16 @@ const posts = [
       "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     ],
     category: "Travel",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f0"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a6"),
     rating: {
       ratings: [2, 3, 3, 4, 3, 4],
       votedUsers: [
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ea"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f0"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f2"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a6"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a8"),
       ],
     },
   },
@@ -189,15 +191,15 @@ const posts = [
       "https://images.unsplash.com/photo-1566740932818-cacfb780ae18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Food",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ef"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
     rating: {
       ratings: [4, 5, 5, 4, 5],
       votedUsers: [
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ea"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f1"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
       ],
     },
   },
@@ -213,16 +215,16 @@ const posts = [
       "https://images.unsplash.com/photo-1564475470622-91237acb86be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1111&q=80",
     ],
     category: "Technology",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
+    author: mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
     rating: {
       ratings: [4, 5, 3, 4, 3, 5],
       votedUsers: [
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ea"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5f0"),
-        mongoose.Types.ObjectId("62ee33e0c32ffe76f1121d1a"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a6"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
       ],
     },
   },
@@ -240,14 +242,14 @@ const posts = [
       "https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     ],
     category: "Fashion",
-    author: mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
     rating: {
       ratings: [4, 5, 2, 5],
       votedUsers: [
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ea"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5eb"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ed"),
-        mongoose.Types.ObjectId("62ee33b7123e78b1eae7d5ee"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+        mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
       ],
     },
   },
@@ -260,6 +262,13 @@ const users = [
     email: "marie.andersen@example.com",
     password: "MarieAn",
     image: "https://randomuser.me/api/portraits/women/5.jpg",
+    shortBio:
+      "Certified student. Infuriatingly humble troublemaker. Amateur analyst. Food scholar. Lifelong introvert. Explorer. Hipster-friendly entrepreneur. Zombieaholic.",
+    socials: {
+      facebook: "https://www.facebook.com/marie.andersen",
+      twitter: "https://www.instagram.com/marie.andersen",
+      linkedin: "https://www.linkedin.com/in/marie.andersen",
+    },
   },
   {
     fullName: "Joanikije Živadinović",
@@ -267,6 +276,13 @@ const users = [
     email: "joanikije.zivadinovic@example.com",
     password: "JoanZ4214",
     image: "https://randomuser.me/api/portraits/men/70.jpg",
+    shortBio:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.",
+    socials: {
+      facebook: "https://www.facebook.com/joanikije.zivadinovic",
+      twitter: "https://www.instagram.com/joanikije.zivadinovic",
+      linkedin: "https://www.linkedin.com/in/joanikije.zivadinovic",
+    },
   },
   {
     fullName: "Bruno Brunet",
@@ -274,6 +290,13 @@ const users = [
     email: "bruno.brunet@example.com",
     password: "BrunoBrunet51",
     image: "https://randomuser.me/api/portraits/men/46.jpg",
+    shortBio:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. ",
+    socials: {
+      facebook: "https://www.facebook.com/bruno.brunet",
+      twitter: "https://www.instagram.com/bruno.brunet",
+      linkedin: "https://www.linkedin.com/in/bruno.brunet",
+    },
   },
   {
     fullName: "Leo Niskanen",
@@ -281,6 +304,13 @@ const users = [
     email: "leo.niskanen@example.com",
     password: "niskanenleo",
     image: "https://randomuser.me/api/portraits/men/91.jpg",
+    shortBio:
+      "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    socials: {
+      facebook: "https://www.facebook.com/leo.niskanen",
+      twitter: "https://www.instagram.com/leo.niskanen",
+      linkedin: "https://www.linkedin.com/in/leo.niskanen",
+    },
   },
   {
     fullName: "Vildan Demirel",
@@ -288,6 +318,13 @@ const users = [
     email: "vildan.demirel@example.com",
     password: "vildandemirel93",
     image: "https://randomuser.me/api/portraits/women/79.jpg",
+    shortBio:
+      "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+    socials: {
+      facebook: "https://www.facebook.com/vildan.demirel",
+      twitter: "https://www.instagram.com/vildan.demirel",
+      linkedin: "https://www.linkedin.com/in/vildan.demirel",
+    },
   },
   {
     fullName: "Madelene Lindstrøm",
@@ -295,6 +332,13 @@ const users = [
     email: "madelene.lindstrom@example.com",
     password: "madelenelidstrom",
     image: "https://randomuser.me/api/portraits/women/50.jpg",
+    shortBio:
+      "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like.",
+    socials: {
+      facebook: "https://www.facebook.com/madelene.lindstrom",
+      twitter: "https://www.instagram.com/madelene.lindstrom",
+      linkedin: "https://www.linkedin.com/in/madelene.lindstrom",
+    },
   },
   {
     fullName: "Elmer Martins",
@@ -302,6 +346,13 @@ const users = [
     email: "elmer.martins@example.com",
     password: "elmermartins1",
     image: "https://randomuser.me/api/portraits/men/44.jpg",
+    shortBio:
+      "Fusce at risus libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce id blandit elit, vitae egestas leo. Duis est tellus, vehicula nec dui non, tristique consectetur mauris. Nunc tempus pretium enim, vel volutpat enim auctor et. Nulla imperdiet ex eget ex suscipit facilisis. Quisque faucibus, lacus et maximus consectetur, eros nisl varius leo, eu dignissim leo orci eu quam. Proin non interdum mi. Vestibulum gravida orci et neque pulvinar, vel auctor leo dapibus.",
+    socials: {
+      facebook: "https://www.facebook.com/elmer.martins",
+      twitter: "https://www.instagram.com/elmer.martins",
+      linkedin: "https://www.linkedin.com/in/elmer.martins",
+    },
   },
   {
     fullName: "Morrison Huitink",
@@ -309,6 +360,13 @@ const users = [
     email: "morrison.huitink@example.com",
     password: "huitikmorrison",
     image: "https://randomuser.me/api/portraits/men/39.jpg",
+    shortBio:
+      "Vestibulum rhoncus pretium turpis vel vehicula. Etiam ac lacus venenatis, convallis ante eu, cursus justo. Vestibulum at lacus vel nibh lobortis efficitur eget at risus. Cras nec viverra nisl. Duis suscipit orci sed hendrerit sagittis. Sed ornare porta sapien, sit amet porttitor metus rhoncus at. Aenean venenatis fringilla nulla ut consequat. Sed est lacus, auctor sit amet efficitur et, imperdiet nec ligula. In hac habitasse platea dictumst. Nullam non magna euismod mi vehicula tincidunt vel et mi. Pellentesque sollicitudin, enim commodo placerat tempus, diam urna dapibus libero, elementum molestie tortor ante non orci. Fusce vitae nibh ut mauris rhoncus dapibus. Nunc vitae nunc ac tellus vehicula rutrum at in velit. Nulla fermentum vehicula elementum.",
+    socials: {
+      facebook: "https://www.facebook.com/morrison.huitink",
+      twitter: "https://www.instagram.com/morrison.huitink",
+      linkedin: "https://www.linkedin.com/in/morrison.huitink",
+    },
   },
   {
     fullName: "Manuel Ferrer",
@@ -316,9 +374,176 @@ const users = [
     email: "manuel.ferrer@example.com",
     password: "manuelferrer",
     image: "https://randomuser.me/api/portraits/men/4.jpg",
+    shortBio:
+      "Maecenas a nulla porttitor diam lobortis vulputate tempus quis elit. In dictum purus a sapien convallis accumsan at vel nunc. Cras rutrum nisi arcu, ut auctor tellus ultricies quis. Mauris at aliquet odio, in tempor massa. Suspendisse dapibus mattis mauris in pretium. Praesent non erat pulvinar ex porttitor sodales. Nullam egestas congue varius. Integer ornare ante sit amet justo convallis, ac fermentum eros pellentesque. Vivamus euismod consectetur nibh, nec iaculis nisi tristique nec.",
+    socials: {
+      facebook: "https://www.facebook.com/manuel.ferrer",
+      twitter: "https://www.instagram.com/manuel.ferrer",
+      linkedin: "https://www.linkedin.com/in/manuel.ferrer",
+    },
   },
 ];
-const comments = [];
+
+const comments = [
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+    text: "I love the idea, it really looks amazing :)",
+    likes: [
+      mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+  },
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+    text: "Great way to put these colors together, they blend in so nicely..",
+    likes: [
+      mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+  },
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+    text: "Beatiful, we are waiting for more posts!",
+    likes: [
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+  },
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+    text: "I need this!!!",
+    likes: [
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+  },
+  //second post
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+    text: "This is so scary :( Should we be worried",
+    likes: [
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb1"),
+  },
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+    text: "AI's are really taking over",
+    likes: [
+      mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a5"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb1"),
+  },
+  //third post
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+    text: "It looks delicious :P Where can we find the ingredients?",
+    likes: [
+      mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb0"),
+  },
+  //fifth post
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+    text: "I expected it to be hard, but with good guide it was very easy to follow. Thanks!",
+    likes: [
+      mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cae"),
+  },
+  {
+    author: mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+    text: "This is how all tutorials should be done, easy and simple..",
+    likes: [
+      mongoose.Types.ObjectId("6321c8cf368d529500ff8cb2"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a3"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+      mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cae"),
+  },
+  //eight post
+  {
+    author: mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
+    text: "You have my respect for this one!",
+    likes: [
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+      mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8ca9"),
+  },
+  // sixth post
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+    text: "I always had a trouble with this particular error. Thanks man",
+    likes: [
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+      mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cab"),
+  },
+  {
+    author: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+    text: "Yooo, thanks!!",
+    likes: [
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a9"),
+      mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a7"),
+      mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+    ],
+    onPost: mongoose.Types.ObjectId("6321c8cf368d529500ff8cab"),
+  },
+];
+
+const reports = [
+  {
+    post: mongoose.Types.ObjectId("6321c8cf368d529500ff8cad"),
+    submittedBy: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a4"),
+    status: "closed",
+    reportType: "Harassment or bullying",
+  },
+  {
+    post: mongoose.Types.ObjectId("6321c8cf368d529500ff8caa"),
+    submittedBy: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a1"),
+    status: "open",
+    reportType: "Spam or misleading",
+  },
+  {
+    post: mongoose.Types.ObjectId("6321c8cf368d529500ff8cac"),
+    submittedBy: mongoose.Types.ObjectId("6321c880ef142e9c4aabcc60"),
+    status: "closed",
+    reportType: "Spam or misleading",
+  },
+  {
+    post: mongoose.Types.ObjectId("6321c8cf368d529500ff8caa"),
+    submittedBy: mongoose.Types.ObjectId("6321c75c4f0c88d7c5f333a6"),
+    status: "open",
+    reportType: "Other",
+  },
+];
 
 async function seedPosts() {
   try {
@@ -326,6 +551,30 @@ async function seedPosts() {
     await Report.deleteMany();
     await Comment.deleteMany();
     await Post.insertMany(posts);
+    console.log("Seeder Initialized.");
+    process.exit();
+  } catch (error) {
+    console.log(error);
+    process.exit();
+  }
+}
+
+async function seedComments() {
+  try {
+    await Comment.deleteMany();
+    await Comment.insertMany(comments);
+    console.log("Seeder Initialized.");
+    process.exit();
+  } catch (error) {
+    console.log(error);
+    process.exit();
+  }
+}
+
+async function seedReports() {
+  try {
+    await Report.deleteMany();
+    await Report.insertMany(reports);
     console.log("Seeder Initialized.");
     process.exit();
   } catch (error) {
@@ -346,5 +595,7 @@ async function seedUsers() {
   }
 }
 
-seedPosts();
+// seedPosts();
 // seedUsers();
+// seedComments();
+// seedReports();

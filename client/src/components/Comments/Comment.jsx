@@ -57,9 +57,7 @@ const Comment = ({
                 <p className="font-semibold dark:text-gray-600">{comment.author.fullName}</p>
               </Link>
               <span className="text-gray-400 dark:text-gray-500">{date}</span>
-              {comment.updatedAt !== comment.createdAt && (
-                <p className="text-green-600 font-semibold text-sm">Edited</p>
-              )}
+              {comment?.edited && <p className="text-green-600 font-semibold text-sm">Edited</p>}
             </div>
             <div className="mt-5 dark:text-gray-600">{comment.text}</div>
           </div>

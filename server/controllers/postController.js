@@ -118,7 +118,7 @@ exports.editComment = async (req, res, next) => {
   const { text } = req.body;
 
   try {
-    await Comment.findByIdAndUpdate(commentId, { text });
+    await Comment.findByIdAndUpdate(commentId, { text, edited: true });
     return res.status(200).json({
       success: true,
     });

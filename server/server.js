@@ -1,15 +1,17 @@
 const express = require("express");
-const cors = require("cors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-const formidable = require("express-formidable");
+const path = require("path");
 const connectDB = require("./config/database");
 const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/post");
 const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
 const errorMiddleware = require("./middlewares/errorMiddleware");
-require("dotenv").config({ path: "server/config/config.env" });
+// require("dotenv").config({ path: "server/config/config.env" });
+
+if (process.env.NODE_ENV !== "PRODUCTION")
+  require("dotenv").config({ path: "backend/config/config.env" });
 
 const app = express();
 const PORT = process.env.PORT || 8070;
@@ -32,6 +34,14 @@ app.use("/api/posts", postRoutes);
 app.use("/api/user-detail", userRoutes);
 app.use("/api/manage", adminRoutes);
 app.use(errorMiddleware);
+
+if (process.env.NODE_ENV === "PRODUCTION") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server running on PORT: ${PORT}`);
