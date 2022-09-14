@@ -5,7 +5,7 @@ export const BROWSE = "/browse-blogs";
 export const PROFILE = "/profile/:userId";
 export const DETAIL = "/blog-read/:blogId";
 export const ADMIN = "/admin-panel";
-export const SERVER_URL = "http://localhost:3434";
+export const SERVER_URL = "/api";
 
 //admin
 export const ADMIN_WELCOME = "";
